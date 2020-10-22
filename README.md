@@ -1,16 +1,10 @@
-# 1234567_FA2020_CSE486.1
-Sample Repository for all work in CSE486.1
-Clone this repository, rename it, make it private, create folder structure.
+# 1410070_FA2020_CSE486.1
+Repository for all work in CSE486.1
 
-How to create your repository?
-
-<7 Digit Student ID>_FA2020_CSE486.1
-
-For Example, if your 7 digit student ID is 1911231, then your repository will be 1911231_FA2020_CSE486.1
 
 Folder Structure:
 
-1911231_FA2020_CSE486.1
+1410070_FA2020_CSE486.1
 
   |-------- Assignments
   
