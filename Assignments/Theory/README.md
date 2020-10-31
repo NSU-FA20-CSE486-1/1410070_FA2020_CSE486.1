@@ -1,12 +1,10 @@
-# 1410070_FA2020_CSE486.1
-Repository for all work in CSE486.1
+# Theory Task
 
 
 Folder Structure:
 
-1410070_FA2020_CSE486.1
 
-  |-------- Assignments
+  |-------- Theory Task
   
               |------------- Assignment 1
               
@@ -14,14 +12,7 @@ Folder Structure:
               
               |------------- Assignment 3
               
-              |------------- Assignment 4
-              
-  |-------- Android Project
-  
-              |------------- README.md
-              
-              |------------- Project Code
-              
+              |------------- Assignment 4              
                               
   
               
