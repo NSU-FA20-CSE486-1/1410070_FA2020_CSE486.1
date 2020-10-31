@@ -8,13 +8,12 @@ Folder Structure:
 
   |-------- Assignments
   
-              |------------- Assignment 1
+              |------------- Lab
               
-              |------------- Assignment 2
+              		|------------- Lab 01 - Oct 29 2020 Thursday
               
-              |------------- Assignment 3
+              |------------- Theory
               
-              |------------- Assignment 4
               
   |-------- Android Project
   
