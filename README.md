@@ -6,21 +6,11 @@ Folder Structure:
 
 1410070_FA2020_CSE486.1
 
-  |-------- Assignments
+- Assignments
+  - Lab
+    - Lab 01 - Oct 29 2020 Thursday
+    - Lab 2
+  - Theory
   
-              |------------- Lab
-              
-              		|------------- Lab 01 - Oct 29 2020 Thursday
-              
-              |------------- Theory
-              
-              
-  |-------- Android Project
-  
-              |------------- README.md
-              
-              |------------- Project Code
-              
-                              
-  
-              
+- Android Project
+  - Project Code
