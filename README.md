@@ -1,8 +1,8 @@
 # 1410070_FA2020_CSE486.1
-Repository for all work in CSE486.1
+### Repository for all work in CSE486.1
 
 
-Folder Structure:
+## Folder Structure:
 
 1410070_FA2020_CSE486.1
 
