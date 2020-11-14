@@ -10,6 +10,7 @@
   - Lab
     - Lab 01 - Oct 29 2020 Thursday
     - Lab 2
+    - Lab 3
   - Theory
   
 - Android Project
