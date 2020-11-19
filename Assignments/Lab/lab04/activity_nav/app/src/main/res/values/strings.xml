@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ActivityBackNav</string>
+    <string name="activity_three">Activity Three</string>
+    <string name="activity_two">Activity Two</string>
+</resources>
