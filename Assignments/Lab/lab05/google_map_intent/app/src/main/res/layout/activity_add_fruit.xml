@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddFruitActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btRice"
+            android:layout_width="wrap_content"
+            android:text="@string/rice"
+            android:onClick="onItemClick"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btWater"
+            android:layout_width="wrap_content"
+            android:onClick="onItemClick"
+            android:text="@string/water"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btNoodles"
+            android:layout_width="wrap_content"
+            android:onClick="onItemClick"
+            android:text="@string/noodles"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btMobile"
+            android:layout_width="wrap_content"
+            android:onClick="onItemClick"
+            android:text="@string/mobile"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btHeadphone"
+            android:layout_width="wrap_content"
+            android:onClick="onItemClick"
+            android:text="@string/headphone"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btCheese"
+            android:layout_width="wrap_content"
+            android:onClick="onItemClick"
+            android:text="@string/cheese"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btApple"
+            android:layout_width="wrap_content"
+            android:onClick="onItemClick"
+            android:text="@string/apple"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btMango"
+            android:layout_width="wrap_content"
+            android:onClick="onItemClick"
+            android:text="@string/mango"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btOrange"
+            android:layout_width="wrap_content"
+            android:onClick="onItemClick"
+            android:text="@string/orange"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btLaptop"
+            android:layout_width="wrap_content"
+            android:onClick="onItemClick"
+            android:text="@string/laptop"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btCharger"
+            android:layout_width="wrap_content"
+            android:onClick="onItemClick"
+            android:text="@string/charger"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
