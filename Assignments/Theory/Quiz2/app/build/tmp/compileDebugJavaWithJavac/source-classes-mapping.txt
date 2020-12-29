@@ -1,0 +1,15 @@
+com/yehaia/cse486/bangladic/WordList.java
+ com.yehaia.cse486.bangladic.WordList
+ com.yehaia.cse486.bangladic.WordList$1
+com/yehaia/cse486/bangladic/BuildConfig.java
+ com.yehaia.cse486.bangladic.BuildConfig
+com/yehaia/cse486/bangladic/Dictionary.java
+ com.yehaia.cse486.bangladic.Dictionary
+ com.yehaia.cse486.bangladic.Dictionary$1
+com/yehaia/cse486/bangladic/WordListAdapter.java
+ com.yehaia.cse486.bangladic.WordListAdapter
+ com.yehaia.cse486.bangladic.WordListAdapter$WordViewHolder
+com/yehaia/cse486/bangladic/MainActivity.java
+ com.yehaia.cse486.bangladic.MainActivity
+ com.yehaia.cse486.bangladic.MainActivity$1
+ com.yehaia.cse486.bangladic.MainActivity$2

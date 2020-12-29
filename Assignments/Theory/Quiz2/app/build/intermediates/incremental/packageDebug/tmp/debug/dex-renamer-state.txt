@@ -1,0 +1,4 @@
+#Tue Dec 29 12:57:28 BDT 2020
+base.0=/Volumes/Workspace/Study/CSE486L/1410070_FA2020_CSE486.1/Assignments/Theory/Quiz2/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
