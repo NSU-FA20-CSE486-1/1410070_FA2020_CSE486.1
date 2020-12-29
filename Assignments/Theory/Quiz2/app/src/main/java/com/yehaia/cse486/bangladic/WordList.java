@@ -26,25 +26,8 @@ public class WordList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mWordList = getIntent().getParcelableArrayListExtra("list");
-        FloatingActionButton fab = findViewById(R.id.fab);
         english = findViewById(R.id.etEnglish);
         bangla = findViewById(R.id.etBangla);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int wordListSize = mWordList.size();
-                // Add a new word to the wordList.
-                Dictionary dic = new Dictionary();
-                dic.setEnglish(english.getText().toString());
-                dic.setBangla(bangla.getText().toString());
-                english.setText("");
-                bangla.setText("");
-                // Notify the adapter, that the data has changed.
-                mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
-                // Scroll to the bottom.
-                mRecyclerView.smoothScrollToPosition(wordListSize);
-            }
-        });
 
         // Create recycler view.
         mRecyclerView = findViewById(R.id.recyclerview);
