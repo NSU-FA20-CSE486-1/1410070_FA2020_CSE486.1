@@ -1,8 +1,10 @@
-package food.restra.hungerbite;
+package food.restra.hungerbite.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import food.restra.hungerbite.R;
 
 public class MainActivity extends AppCompatActivity {
 
