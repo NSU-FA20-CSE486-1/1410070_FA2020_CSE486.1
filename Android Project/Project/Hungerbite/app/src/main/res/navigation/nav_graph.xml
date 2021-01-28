@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/customerHomeFragment">
+
+    <fragment
+        android:id="@+id/customerHomeFragment"
+        android:name="food.restra.hungerbite.customer.home.fragment.CustomerHomeFragment"
+        android:label="fragment_customer_home"
+        tools:layout="@layout/fragment_customer_home" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="food.restra.hungerbite.customer.home.fragment.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/foodSearchFragment"
+        android:name="food.restra.hungerbite.customer.home.fragment.FoodSearchFragment"
+        android:label="fragment_food_search"
+        tools:layout="@layout/fragment_food_search" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="food.restra.hungerbite.customer.home.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
