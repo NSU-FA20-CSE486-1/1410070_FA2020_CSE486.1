@@ -1,10 +1,9 @@
-package food.restra.hungerbite.activity;
+package food.restra.hungerbite.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import food.restra.hungerbite.R;
