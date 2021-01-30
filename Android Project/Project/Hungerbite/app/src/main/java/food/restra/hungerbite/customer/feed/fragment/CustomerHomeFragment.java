@@ -1,4 +1,4 @@
-package food.restra.hungerbite.customer.home.fragment;
+package food.restra.hungerbite.customer.feed.fragment;
 
 import android.os.Bundle;
 
@@ -18,9 +18,9 @@ import android.widget.Toast;
 import java.util.List;
 
 import food.restra.hungerbite.R;
-import food.restra.hungerbite.customer.home.adapter.PostListAdapter;
-import food.restra.hungerbite.customer.home.model.PostModel;
-import food.restra.hungerbite.customer.home.viewmodel.PostListViewModel;
+import food.restra.hungerbite.customer.feed.adapter.PostListAdapter;
+import food.restra.hungerbite.customer.feed.model.PostModel;
+import food.restra.hungerbite.customer.feed.viewmodel.PostListViewModel;
 
 /**
  * A simple {@link Fragment} subclass.

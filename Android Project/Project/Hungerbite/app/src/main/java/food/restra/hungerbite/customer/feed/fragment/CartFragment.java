@@ -1,4 +1,4 @@
-package food.restra.hungerbite.customer.home.fragment;
+package food.restra.hungerbite.customer.feed.fragment;
 
 import android.os.Bundle;
 

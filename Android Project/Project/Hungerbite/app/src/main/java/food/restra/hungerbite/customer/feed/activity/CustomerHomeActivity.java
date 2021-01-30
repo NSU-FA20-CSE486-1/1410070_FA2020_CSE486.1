@@ -1,4 +1,4 @@
-package food.restra.hungerbite.customer.home.activity;
+package food.restra.hungerbite.customer.feed.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;

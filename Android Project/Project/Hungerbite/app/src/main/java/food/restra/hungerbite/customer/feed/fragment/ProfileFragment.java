@@ -1,4 +1,4 @@
-package food.restra.hungerbite.customer.home.fragment;
+package food.restra.hungerbite.customer.feed.fragment;
 
 import android.os.Bundle;
 
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import food.restra.hungerbite.R;
 
-public class FoodSearchFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -19,12 +19,12 @@ public class FoodSearchFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FoodSearchFragment() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
-    public static FoodSearchFragment newInstance(String param1, String param2) {
-        FoodSearchFragment fragment = new FoodSearchFragment();
+    public static ProfileFragment newInstance(String param1, String param2) {
+        ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -45,6 +45,6 @@ public class FoodSearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_food_search, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 }

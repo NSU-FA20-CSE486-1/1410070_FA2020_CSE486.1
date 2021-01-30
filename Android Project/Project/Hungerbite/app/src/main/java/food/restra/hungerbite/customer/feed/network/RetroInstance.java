@@ -1,4 +1,4 @@
-package food.restra.hungerbite.customer.home.network;
+package food.restra.hungerbite.customer.feed.network;
 
 /**
  * Created by Yeahia Muhammad Arif on 29,January,2021

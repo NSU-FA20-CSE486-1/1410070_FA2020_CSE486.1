@@ -1,11 +1,11 @@
-package food.restra.hungerbite.customer.home.viewmodel;
+package food.restra.hungerbite.customer.feed.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import java.util.List;
 
-import food.restra.hungerbite.customer.home.model.PostModel;
-import food.restra.hungerbite.customer.home.network.APIService;
-import food.restra.hungerbite.customer.home.network.RetroInstance;
+import food.restra.hungerbite.customer.feed.model.PostModel;
+import food.restra.hungerbite.customer.feed.network.APIService;
+import food.restra.hungerbite.customer.feed.network.RetroInstance;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

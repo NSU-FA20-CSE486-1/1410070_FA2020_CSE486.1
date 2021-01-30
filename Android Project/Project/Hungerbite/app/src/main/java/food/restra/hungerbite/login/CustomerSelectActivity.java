@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import food.restra.hungerbite.R;
-import food.restra.hungerbite.customer.home.activity.CustomerHomeActivity;
+import food.restra.hungerbite.customer.feed.activity.CustomerHomeActivity;
 
 public class CustomerSelectActivity extends AppCompatActivity {
     LinearLayout layoutCustomer, layoutChef, layoutDeliveryMan;

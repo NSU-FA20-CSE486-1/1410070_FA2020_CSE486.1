@@ -1,4 +1,4 @@
-package food.restra.hungerbite.customer.home.adapter;
+package food.restra.hungerbite.customer.feed.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.List;
 
 import food.restra.hungerbite.R;
-import food.restra.hungerbite.customer.home.model.PostModel;
+import food.restra.hungerbite.customer.feed.model.PostModel;
 
 /**
  * Created by Yeahia Muhammad Arif on 29,January,2021
