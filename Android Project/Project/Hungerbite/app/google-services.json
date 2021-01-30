@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "509483908609",
+    "project_id": "hungerbite-e4b2d",
+    "storage_bucket": "hungerbite-e4b2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509483908609:android:a6e29d256de58e88184a00",
+        "android_client_info": {
+          "package_name": "food.restra.hungerbite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509483908609-bbplcs0hhso53f94ci95gslu0i5nspp2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASUr_aisHKybIN-b0-S1JtvIFv3zOBx6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509483908609-bbplcs0hhso53f94ci95gslu0i5nspp2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
