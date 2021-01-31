@@ -7,7 +7,7 @@ public class PostModel {
     private String title;
     private String image;
 
-
+    public PostModel(){}
     public PostModel(String title, String image) {
         this.title = title;
         this.image = image;

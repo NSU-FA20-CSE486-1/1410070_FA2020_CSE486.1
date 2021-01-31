@@ -20,7 +20,7 @@ import java.util.List;
 import food.restra.hungerbite.R;
 import food.restra.hungerbite.customer.feed.adapter.PostListAdapter;
 import food.restra.hungerbite.customer.feed.model.PostModel;
-import food.restra.hungerbite.customer.feed.viewmodel.PostListViewModel;
+import food.restra.hungerbite.customer.feed.viewmodel.ShoppingListViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +33,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
     private static final String ARG_PARAM2 = "param2";
     private List<PostModel> postModelList;
     private PostListAdapter adapter;
-    private PostListViewModel viewModel;
+    private ShoppingListViewModel viewModel;
 
 
     // TODO: Rename and change types of parameters
@@ -78,8 +78,9 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
         recyclerView.setAdapter(adapter);
 
 
-        viewModel = ViewModelProviders.of(this).get(PostListViewModel.class);
-        viewModel.getPostListObserver().observe(getViewLifecycleOwner(), postModels -> {
+        viewModel = ViewModelProviders.of(this).get(ShoppingListViewModel.class);
+        viewModel.getDinnerListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
+        viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
             if(postModels != null) {
                 postModelList = postModels;
                 adapter.setPostList(postModels);
@@ -88,7 +89,6 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
                 noresult.setVisibility(View.VISIBLE);
             }
         });
-        viewModel.makeApiCall();
         super.onViewCreated(view, savedInstanceState);
     }
 

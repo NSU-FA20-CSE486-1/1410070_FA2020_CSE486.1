@@ -12,11 +12,11 @@ import retrofit2.Response;
 /**
  * Created by Yeahia Muhammad Arif on 29,January,2021
  */
-public class PostListViewModel extends ViewModel {
+public class PostListViewModelRetrofit extends ViewModel {
 
     private MutableLiveData<List<PostModel>> postList;
 
-    public PostListViewModel(){
+    public PostListViewModelRetrofit(){
         postList = new MutableLiveData<>();
     }
 
