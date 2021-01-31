@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
     private List<PostModel> postModelList;
     private PostListAdapter adapter;
     private ShoppingListViewModel viewModel;
+    private LinearLayout llDinner, llLunch, llBreakfast, llDesert;
 
 
     // TODO: Rename and change types of parameters
@@ -72,10 +74,75 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         final TextView noresult = view.findViewById(R.id.noResultTv);
+        llDinner = view.findViewById(R.id.llDinner);
+        llLunch = view.findViewById(R.id.llLunch);
+        llBreakfast = view.findViewById(R.id.llBreakfast);
+        llDesert = view.findViewById(R.id.lldesert);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         adapter =  new PostListAdapter(getContext(), postModelList, this);
         recyclerView.setAdapter(adapter);
+
+        llDinner.setOnClickListener(view1 -> {
+            Toast.makeText(getContext(), "dinner", Toast.LENGTH_LONG).show();
+            viewModel.getDinnerListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
+            viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
+                if(postModels != null) {
+                    postModelList = postModels;
+                    adapter.setPostList(postModels);
+                    adapter.notifyDataSetChanged();
+                    noresult.setVisibility(View.GONE);
+                } else {
+                    noresult.setVisibility(View.VISIBLE);
+                }
+            });
+        });
+
+        llLunch.setOnClickListener(view1 -> {
+            Toast.makeText(getContext(), "lunch", Toast.LENGTH_LONG).show();
+            viewModel.getLunchListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
+            viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
+                if(postModels != null) {
+                    postModelList = postModels;
+                    adapter.setPostList(postModels);
+                    adapter.notifyDataSetChanged();
+                    noresult.setVisibility(View.GONE);
+                } else {
+                    noresult.setVisibility(View.VISIBLE);
+                }
+            });
+        });
+
+        llBreakfast.setOnClickListener(view1 -> {
+            Toast.makeText(getContext(), "breakfast", Toast.LENGTH_LONG).show();
+            viewModel.getBreakfastListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
+            viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
+                if(postModels != null) {
+                    postModelList = postModels;
+                    adapter.setPostList(postModels);
+                    adapter.notifyDataSetChanged();
+                    noresult.setVisibility(View.GONE);
+                } else {
+                    noresult.setVisibility(View.VISIBLE);
+                }
+            });
+        });
+
+        llDesert.setOnClickListener(view1 -> {
+            Toast.makeText(getContext(), "desert", Toast.LENGTH_LONG).show();
+            viewModel.getDessertLiveData().observe(getViewLifecycleOwner(), Observable -> {});
+            viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
+                if(postModels != null) {
+                    postModelList = postModels;
+                    adapter.setPostList(postModels);
+                    adapter.notifyDataSetChanged();
+                    noresult.setVisibility(View.GONE);
+                } else {
+                    noresult.setVisibility(View.VISIBLE);
+                }
+            });
+        });
 
 
         viewModel = ViewModelProviders.of(this).get(ShoppingListViewModel.class);

@@ -28,7 +28,7 @@ public class PostListLiveData extends LiveData<List<PostModel>> implements OnCom
 
   private List<PostModel> shoppingListTemp = new ArrayList<>();
 
-  public MutableLiveData<List<PostModel>> postList = new MutableLiveData<List<PostModel>>();
+  public MutableLiveData<List<PostModel>> postList = new MutableLiveData<>();
 
   private ListenerRegistration listenerRegistration = () -> {};
 
