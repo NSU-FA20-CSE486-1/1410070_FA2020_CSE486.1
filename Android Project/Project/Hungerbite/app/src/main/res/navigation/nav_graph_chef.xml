@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_chef"
+    app:startDestination="@id/fragmentRequestInfo">
+
+    <fragment
+        android:id="@+id/fragmentRequestInfo"
+        android:name="food.restra.hungerbite.chef.fragment.FragmentRequestInfo"
+        android:label="fragment_request_info"
+        tools:layout="@layout/fragment_request_info" />
+    <fragment
+        android:id="@+id/fragmentItemList"
+        android:name="food.restra.hungerbite.chef.fragment.FragmentItemList"
+        android:label="fragment_item_list"
+        tools:layout="@layout/fragment_item_list" />
+    <fragment
+        android:id="@+id/fragmentAddItem"
+        android:name="food.restra.hungerbite.chef.fragment.FragmentAddItem"
+        android:label="fragment_add_item"
+        tools:layout="@layout/fragment_add_item" />
+</navigation>
