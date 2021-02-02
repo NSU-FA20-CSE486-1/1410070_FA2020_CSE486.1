@@ -1,24 +1,16 @@
-package food.restra.hungerbite.chef.addfood.model;
+package food.restra.hungerbite.customer.feed.model;
 
 /**
- * Created by Yeahia Muhammad Arif on 02,February,2021
+ * Created by Yeahia Muhammad Arif on 29,January,2021
  */
 public class FoodItem {
-    String title;
+    private String productId;
+    private String title;
+    private String image;
     String price;
     String category;
     String foodCategory;
-    String image;
     String uploaderId;
-
-    public FoodItem(String title, String price, String category, String foodCategory, String image, String uploaderId) {
-        this.title = title;
-        this.price = price;
-        this.category = category;
-        this.foodCategory = foodCategory;
-        this.image = image;
-        this.uploaderId = uploaderId;
-    }
 
     public FoodItem(){}
 
@@ -28,6 +20,22 @@ public class FoodItem {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getPrice() {
@@ -52,14 +60,6 @@ public class FoodItem {
 
     public void setFoodCategory(String foodCategory) {
         this.foodCategory = foodCategory;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getUploaderId() {

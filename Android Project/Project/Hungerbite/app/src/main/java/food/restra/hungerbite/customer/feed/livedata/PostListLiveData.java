@@ -1,34 +1,26 @@
 package food.restra.hungerbite.customer.feed.livedata;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import food.restra.hungerbite.customer.feed.model.PostModel;
+import food.restra.hungerbite.customer.feed.model.FoodItem;
 
-public class PostListLiveData extends LiveData<List<PostModel>> implements OnCompleteListener<QuerySnapshot> {
+public class PostListLiveData extends LiveData<List<FoodItem>> implements OnCompleteListener<QuerySnapshot> {
   private Task<QuerySnapshot> querySnapshotTask;
 
-  private List<PostModel> shoppingListTemp = new ArrayList<>();
+  private List<FoodItem> shoppingListTemp = new ArrayList<>();
 
-  public MutableLiveData<List<PostModel>> postList = new MutableLiveData<>();
+  public MutableLiveData<List<FoodItem>> postList = new MutableLiveData<>();
 
   private ListenerRegistration listenerRegistration = () -> {};
 
@@ -53,8 +45,8 @@ public class PostListLiveData extends LiveData<List<PostModel>> implements OnCom
       shoppingListTemp.clear();
       for (DocumentSnapshot document : task.getResult()) {
         if (document.exists()) {
-          PostModel postModel = document.toObject(PostModel.class);
-          shoppingListTemp.add(postModel);
+          FoodItem foodItem = document.toObject(FoodItem.class);
+          shoppingListTemp.add(foodItem);
         }
       }
       postList.setValue(shoppingListTemp);

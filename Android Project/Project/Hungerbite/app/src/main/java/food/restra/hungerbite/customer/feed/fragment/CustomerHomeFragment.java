@@ -1,5 +1,6 @@
 package food.restra.hungerbite.customer.feed.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,12 +17,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import food.restra.hungerbite.R;
 import food.restra.hungerbite.customer.feed.adapter.PostListAdapter;
-import food.restra.hungerbite.customer.feed.model.PostModel;
+import food.restra.hungerbite.customer.feed.model.FoodItem;
 import food.restra.hungerbite.customer.feed.viewmodel.ShoppingListViewModel;
+import food.restra.hungerbite.customer.product_detail.ProductDetailActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,10 +36,11 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private List<PostModel> postModelList;
+    private List<FoodItem> foodItemList;
     private PostListAdapter adapter;
     private ShoppingListViewModel viewModel;
     private LinearLayout llDinner, llLunch, llBreakfast, llDesert;
+    private Gson gson;
 
 
     // TODO: Rename and change types of parameters
@@ -61,6 +66,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        gson =  new Gson();
     }
 
     @Override
@@ -81,7 +87,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        adapter =  new PostListAdapter(getContext(), postModelList, this);
+        adapter =  new PostListAdapter(getContext(), foodItemList, this);
         recyclerView.setAdapter(adapter);
 
         llDinner.setOnClickListener(view1 -> {
@@ -89,7 +95,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
             viewModel.getDinnerListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
             viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
                 if(postModels != null) {
-                    postModelList = postModels;
+                    foodItemList = postModels;
                     adapter.setPostList(postModels);
                     adapter.notifyDataSetChanged();
                     noresult.setVisibility(View.GONE);
@@ -104,7 +110,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
             viewModel.getLunchListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
             viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
                 if(postModels != null) {
-                    postModelList = postModels;
+                    foodItemList = postModels;
                     adapter.setPostList(postModels);
                     adapter.notifyDataSetChanged();
                     noresult.setVisibility(View.GONE);
@@ -119,7 +125,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
             viewModel.getBreakfastListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
             viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
                 if(postModels != null) {
-                    postModelList = postModels;
+                    foodItemList = postModels;
                     adapter.setPostList(postModels);
                     adapter.notifyDataSetChanged();
                     noresult.setVisibility(View.GONE);
@@ -134,7 +140,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
             viewModel.getDessertLiveData().observe(getViewLifecycleOwner(), Observable -> {});
             viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
                 if(postModels != null) {
-                    postModelList = postModels;
+                    foodItemList = postModels;
                     adapter.setPostList(postModels);
                     adapter.notifyDataSetChanged();
                     noresult.setVisibility(View.GONE);
@@ -149,7 +155,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
         viewModel.getDinnerListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
         viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
             if(postModels != null) {
-                postModelList = postModels;
+                foodItemList = postModels;
                 adapter.setPostList(postModels);
                 noresult.setVisibility(View.GONE);
             } else {
@@ -160,7 +166,10 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
     }
 
     @Override
-    public void onMovieClick(PostModel movie) {
-        Toast.makeText(getContext(), "Clicked Movie Name is : " +movie.getTitle(), Toast.LENGTH_SHORT).show();
+    public void onMovieClick(FoodItem movie) {
+        Intent intent = new Intent(getContext(), ProductDetailActivity.class);
+        String item = gson.toJson(movie);
+        intent.putExtra("item", item);
+        startActivity(intent);
     }
 }

@@ -1,40 +1,39 @@
 package food.restra.hungerbite.customer.feed.viewmodel;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
 import food.restra.hungerbite.customer.feed.livedata.PostListLiveData;
-import food.restra.hungerbite.customer.feed.model.PostModel;
+import food.restra.hungerbite.customer.feed.model.FoodItem;
 import food.restra.hungerbite.customer.feed.repository.PostListRepository;
 
 public class ShoppingListViewModel extends ViewModel {
   private PostListRepository repository = new PostListRepository();
   PostListLiveData liveData = null;
 
-  public LiveData<List<PostModel>> getLunchListLiveData() {
+  public LiveData<List<FoodItem>> getLunchListLiveData() {
     liveData = repository.getLunchPosts();
     return liveData;
   }
 
-  public LiveData<List<PostModel>> getDinnerListLiveData() {
+  public LiveData<List<FoodItem>> getDinnerListLiveData() {
     liveData = repository.getDinnerPosts();
     return liveData;
   }
 
-  public LiveData<List<PostModel>> getBreakfastListLiveData() {
+  public LiveData<List<FoodItem>> getBreakfastListLiveData() {
     liveData = repository.getBreakfastPosts();
     return liveData;
   }
 
-  public LiveData<List<PostModel>> getDessertLiveData() {
+  public LiveData<List<FoodItem>> getDessertLiveData() {
     liveData = repository.getDessertPosts();
     return liveData;
   }
 
-  public LiveData<List<PostModel>> getShoppingList() {
+  public LiveData<List<FoodItem>> getShoppingList() {
     return liveData.postList;
   }
 }

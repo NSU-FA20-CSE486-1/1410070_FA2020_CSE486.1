@@ -5,12 +5,12 @@ package food.restra.hungerbite.customer.feed.network;
  */
 import java.util.List;
 
-import food.restra.hungerbite.customer.feed.model.PostModel;
+import food.restra.hungerbite.customer.feed.model.FoodItem;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface APIService {
 
     @GET("ea02c45c")
-    Call<List<PostModel>> getMovieList();
+    Call<List<FoodItem>> getMovieList();
 }

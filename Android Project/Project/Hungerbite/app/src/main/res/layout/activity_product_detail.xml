@@ -121,8 +121,7 @@
                     <TextView
                         android:id="@+id/tvSelectCounter"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1"/>
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
                 <ImageButton
                     android:id="@+id/btPlus"
@@ -140,12 +139,14 @@
         android:gravity="center"
         android:layout_height="100dp">
         <RelativeLayout
+            android:id="@+id/btAddCart"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/button_background">
             <TextView
+                android:id="@+id/tvItemCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -154,6 +155,7 @@
                 android:layout_marginLeft="5dp"
                 android:text="1 item"/>
             <TextView
+                android:id="@+id/tvPriceSum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

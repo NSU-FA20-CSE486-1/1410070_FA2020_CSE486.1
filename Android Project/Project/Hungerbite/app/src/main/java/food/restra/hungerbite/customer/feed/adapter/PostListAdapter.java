@@ -16,23 +16,23 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.List;
 
 import food.restra.hungerbite.R;
-import food.restra.hungerbite.customer.feed.model.PostModel;
+import food.restra.hungerbite.customer.feed.model.FoodItem;
 
 /**
  * Created by Yeahia Muhammad Arif on 29,January,2021
  */
 public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyViewHolder> {
     private Context context;
-    private List<PostModel> postList;
+    private List<FoodItem> postList;
     private ItemClickListener clickListener;
 
-    public PostListAdapter(Context context, List<PostModel> postList, ItemClickListener clickListener) {
+    public PostListAdapter(Context context, List<FoodItem> postList, ItemClickListener clickListener) {
         this.context = context;
         this.postList = postList;
         this.clickListener = clickListener;
     }
 
-    public void setPostList(List<PostModel> postList) {
+    public void setPostList(List<FoodItem> postList) {
         this.postList = postList;
         notifyDataSetChanged();
     }
@@ -83,6 +83,6 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
 
 
     public interface ItemClickListener{
-        public void onMovieClick(PostModel movie);
+        public void onMovieClick(FoodItem movie);
     }
 }

@@ -3,7 +3,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import java.util.List;
 
-import food.restra.hungerbite.customer.feed.model.PostModel;
+import food.restra.hungerbite.customer.feed.model.FoodItem;
 import food.restra.hungerbite.customer.feed.network.APIService;
 import food.restra.hungerbite.customer.feed.network.RetroInstance;
 import retrofit2.Call;
@@ -14,28 +14,28 @@ import retrofit2.Response;
  */
 public class PostListViewModelRetrofit extends ViewModel {
 
-    private MutableLiveData<List<PostModel>> postList;
+    private MutableLiveData<List<FoodItem>> postList;
 
     public PostListViewModelRetrofit(){
         postList = new MutableLiveData<>();
     }
 
-    public MutableLiveData<List<PostModel>> getPostListObserver() {
+    public MutableLiveData<List<FoodItem>> getPostListObserver() {
         return postList;
 
     }
 
     public void makeApiCall() {
         APIService apiService = RetroInstance.getRetroClient().create(APIService.class);
-        Call<List<PostModel>> call = apiService.getMovieList();
-        call.enqueue(new Callback<List<PostModel>>() {
+        Call<List<FoodItem>> call = apiService.getMovieList();
+        call.enqueue(new Callback<List<FoodItem>>() {
             @Override
-            public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
+            public void onResponse(Call<List<FoodItem>> call, Response<List<FoodItem>> response) {
                 postList.postValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<PostModel>> call, Throwable t) {
+            public void onFailure(Call<List<FoodItem>> call, Throwable t) {
                 postList.postValue(null);
             }
         });
