@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_item_list" />
     <fragment
         android:id="@+id/fragmentAddItem"
-        android:name="food.restra.hungerbite.chef.fragment.FragmentAddItem"
+        android:name="food.restra.hungerbite.chef.addfood.fragment.FragmentAddItem"
         android:label="fragment_add_item"
         tools:layout="@layout/fragment_add_item" />
 </navigation>

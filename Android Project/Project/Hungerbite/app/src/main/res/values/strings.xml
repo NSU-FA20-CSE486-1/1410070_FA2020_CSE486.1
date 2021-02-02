@@ -2,4 +2,19 @@
     <string name="app_name">Hungerbite</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="dessert">Dessert</string>
+    <string name="item_name">Item Name</string>
+    <string name="enter_name">Enter name</string>
+    <string name="item_price">Item Price</string>
+    <string name="enter_price">Enter Price</string>
+    <string name="name_and_price">Name and Price</string>
+    <string name="food_time">Food Time</string>
+    <string name="category">Category</string>
+    <string name="enter_category">Enter Category</string>
+    <string name="item_category">Item Category</string>
+    <string name="photo_upload">Photo Upload</string>
+    <string name="add_item">Add Item</string>
 </resources>
