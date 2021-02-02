@@ -12,16 +12,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import food.restra.hungerbite.R;
+import food.restra.hungerbite.chef.ChefHomeActivity;
 import food.restra.hungerbite.customer.feed.activity.CustomerHomeActivity;
+import food.restra.hungerbite.login.model.AppUser;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    FirebaseFirestore db;
     private static final String TAG = "EmailPassword";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText passwordText = findViewById(R.id.etPassword);
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         buttonSignup.setOnClickListener(view -> {
             mAuth.createUserWithEmailAndPassword(editText.getText().toString(), passwordText.getText().toString())
@@ -60,23 +67,46 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
-                            startActivity(intent);
-                            finish();
+                            gotoLandingPage();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
-
-                        // ...
                     }
                 }));
 
 
 
+    }
+
+    void gotoLandingPage(){
+        db.collection("users")
+                .document(mAuth.getCurrentUser().getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        AppUser user = documentSnapshot.toObject(AppUser.class);
+                        Intent intent;
+                        switch(user.getType()) {
+                            case "customer":
+                                intent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
+                                break;
+                            case "chef":
+                                intent = new Intent(LoginActivity.this, ChefHomeActivity.class);
+                                break;
+                            default:
+                                intent = null;
+                                // code block
+                        }
+                        if(intent != null){
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                });
     }
 
     @Override

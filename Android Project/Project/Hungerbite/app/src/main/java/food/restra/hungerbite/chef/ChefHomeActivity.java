@@ -1,10 +1,7 @@
-package food.restra.hungerbite.customer.feed.activity;
+package food.restra.hungerbite.chef;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,21 +9,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import food.restra.hungerbite.R;
+import food.restra.hungerbite.customer.feed.activity.CustomerHomeActivity;
 import food.restra.hungerbite.login.LoginActivity;
 
-public class CustomerHomeActivity extends AppCompatActivity {
+public class ChefHomeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_home);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+        setContentView(R.layout.activity_chef_home);
         mAuth = FirebaseAuth.getInstance();
     }
 
@@ -43,7 +37,7 @@ public class CustomerHomeActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.logout:
                 mAuth.signOut();
-                Intent intent = new Intent(CustomerHomeActivity.this, LoginActivity.class);
+                Intent intent = new Intent(ChefHomeActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 return true;
