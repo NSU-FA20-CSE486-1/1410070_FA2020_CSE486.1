@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/customerHomeFragment"
-        android:name="food.restra.hungerbite.customer.feed.fragment.CustomerHomeFragment"
+        android:name="food.restra.hungerbite.feature.customer.feed.fragment.CustomerHomeFragment"
         android:label="fragment_customer_home"
         tools:layout="@layout/fragment_customer_home" />
     <fragment
         android:id="@+id/cartFragment"
-        android:name="food.restra.hungerbite.customer.cart.fragment.CartFragment"
+        android:name="food.restra.hungerbite.feature.customer.cart.fragment.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/foodSearchFragment"
-        android:name="food.restra.hungerbite.customer.feed.fragment.FoodSearchFragment"
+        android:name="food.restra.hungerbite.feature.customer.feed.fragment.FoodSearchFragment"
         android:label="fragment_food_search"
         tools:layout="@layout/fragment_food_search" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="food.restra.hungerbite.customer.feed.fragment.ProfileFragment"
+        android:name="food.restra.hungerbite.feature.customer.feed.fragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

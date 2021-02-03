@@ -12,14 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hungerbite">
         <activity android:name=".customer.checkout.ActivityCheckout"></activity>
-        <activity android:name=".customer.product_detail.ProductDetailActivity" />
-        <activity android:name=".chef.ChefHomeActivity" />
-        <activity android:name=".customer.feed.activity.CustomerHomeActivity" />
-        <activity android:name=".login.CustomerSelectActivity" />
-        <activity android:name=".login.OtpVerificationActivity" />
-        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".feature.customer.product_detail.ProductDetailActivity" />
+        <activity android:name=".feature.chef.ChefHomeActivity" />
+        <activity android:name=".feature.customer.feed.activity.CustomerHomeActivity" />
+        <activity android:name=".feature.login.CustomerSelectActivity" />
+        <activity android:name=".feature.login.OtpVerificationActivity" />
+        <activity android:name=".feature.login.LoginActivity" />
         <activity
-            android:name=".login.SplashActivity"
+            android:name=".feature.login.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
