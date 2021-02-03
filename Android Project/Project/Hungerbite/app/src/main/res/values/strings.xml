@@ -17,4 +17,6 @@
     <string name="item_category">Item Category</string>
     <string name="photo_upload">Photo Upload</string>
     <string name="add_item">Add Item</string>
+    <string name="my_bucket">My Bucket</string>
+    <string name="place_order">Place Order</string>
 </resources>

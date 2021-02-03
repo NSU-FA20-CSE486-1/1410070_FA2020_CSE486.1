@@ -102,7 +102,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 cart.setCustomerId(mAuth.getCurrentUser().getUid());
                 cart.setItemCount(itemCount);
                 cart.setItem(item);
-                ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
+                ProgressDialog progressDialog = new ProgressDialog(ProductDetailActivity.this);
                 progressDialog.setTitle("Loading..");
                 progressDialog.show();
                 db.collection("users")
