@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,11 +80,11 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        final TextView noresult = view.findViewById(R.id.noResultTv);
         llDinner = view.findViewById(R.id.llDinner);
         llLunch = view.findViewById(R.id.llLunch);
         llBreakfast = view.findViewById(R.id.llBreakfast);
         llDesert = view.findViewById(R.id.lldesert);
+        ImageView imageView = view.findViewById(R.id.ivNoItemFound);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -98,9 +99,12 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
                     foodItemList = postModels;
                     adapter.setPostList(postModels);
                     adapter.notifyDataSetChanged();
-                    noresult.setVisibility(View.GONE);
-                } else {
-                    noresult.setVisibility(View.VISIBLE);
+                    imageView.setVisibility(View.GONE);
+                    if(postModels.isEmpty()){
+                        imageView.setVisibility(View.VISIBLE);
+                    }else{
+                        imageView.setVisibility(View.GONE);
+                    }
                 }
             });
         });
@@ -113,9 +117,11 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
                     foodItemList = postModels;
                     adapter.setPostList(postModels);
                     adapter.notifyDataSetChanged();
-                    noresult.setVisibility(View.GONE);
-                } else {
-                    noresult.setVisibility(View.VISIBLE);
+                    if(postModels.isEmpty()){
+                        imageView.setVisibility(View.VISIBLE);
+                    }else{
+                        imageView.setVisibility(View.GONE);
+                    }
                 }
             });
         });
@@ -128,9 +134,11 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
                     foodItemList = postModels;
                     adapter.setPostList(postModels);
                     adapter.notifyDataSetChanged();
-                    noresult.setVisibility(View.GONE);
-                } else {
-                    noresult.setVisibility(View.VISIBLE);
+                    if(postModels.isEmpty()){
+                        imageView.setVisibility(View.VISIBLE);
+                    }else{
+                        imageView.setVisibility(View.GONE);
+                    }
                 }
             });
         });
@@ -143,9 +151,11 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
                     foodItemList = postModels;
                     adapter.setPostList(postModels);
                     adapter.notifyDataSetChanged();
-                    noresult.setVisibility(View.GONE);
-                } else {
-                    noresult.setVisibility(View.VISIBLE);
+                    if(postModels.isEmpty()){
+                        imageView.setVisibility(View.VISIBLE);
+                    }else{
+                        imageView.setVisibility(View.GONE);
+                    }
                 }
             });
         });
@@ -157,9 +167,11 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
             if(postModels != null) {
                 foodItemList = postModels;
                 adapter.setPostList(postModels);
-                noresult.setVisibility(View.GONE);
-            } else {
-                noresult.setVisibility(View.VISIBLE);
+                if(postModels.isEmpty()){
+                    imageView.setVisibility(View.VISIBLE);
+                }else{
+                    imageView.setVisibility(View.GONE);
+                }
             }
         });
         super.onViewCreated(view, savedInstanceState);
