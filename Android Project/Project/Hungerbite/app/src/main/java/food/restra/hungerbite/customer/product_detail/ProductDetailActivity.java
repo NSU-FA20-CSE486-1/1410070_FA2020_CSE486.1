@@ -1,16 +1,29 @@
 package food.restra.hungerbite.customer.product_detail;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
+
 import food.restra.hungerbite.R;
+import food.restra.hungerbite.common.util.Constants;
 import food.restra.hungerbite.customer.feed.model.FoodItem;
+import food.restra.hungerbite.customer.product_detail.model.Cart;
 
 public class ProductDetailActivity extends AppCompatActivity {
     Gson gson;
@@ -18,6 +31,9 @@ public class ProductDetailActivity extends AppCompatActivity {
     ImageView ivProductImage;
     ImageButton btPlus, btMinus;
     RelativeLayout btAddCart;
+    SharedPreferences.Editor editor;
+    SharedPreferences sharedPref;
+    private FirebaseAuth mAuth;
     FoodItem item;
     int itemCount = 0;
     int priceCount = 0;
@@ -35,6 +51,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         gson = new Gson();
         String data = getIntent().getStringExtra("item");
         item  = gson.fromJson(data, FoodItem.class);
+        sharedPref = getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
+        mAuth = FirebaseAuth.getInstance();
 
         tvTitle.setText(item.getTitle());
         tvSubtitle.setText(item.getTitle());
@@ -69,6 +88,21 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
 
         btAddCart.setOnClickListener(view -> {
+            if(itemCount > 0){
+                Cart cart = new Cart();
+                cart.setCustomerId(mAuth.getCurrentUser().getUid());
+                cart.setItemCount(itemCount);
+                cart.setItem(item);
+
+                Type type = new TypeToken<List<Cart>>(){}.getType();
+                List<Cart> carts = gson.fromJson(sharedPref.getString(Constants.CART_ITEMS, "[]"), type);
+                carts.add(cart);
+                editor.putString(Constants.CART_ITEMS, gson.toJson(carts));
+                Toast.makeText(this, "Item added to cart successfully", Toast.LENGTH_SHORT).show();
+                finish();
+            }else{
+                Toast.makeText(this, "Please add item", Toast.LENGTH_SHORT).show();
+            }
 
         });
     }

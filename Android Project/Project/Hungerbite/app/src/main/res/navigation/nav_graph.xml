@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_customer_home" />
     <fragment
         android:id="@+id/cartFragment"
-        android:name="food.restra.hungerbite.customer.feed.fragment.CartFragment"
+        android:name="food.restra.hungerbite.customer.cart.fragment.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
     <fragment
