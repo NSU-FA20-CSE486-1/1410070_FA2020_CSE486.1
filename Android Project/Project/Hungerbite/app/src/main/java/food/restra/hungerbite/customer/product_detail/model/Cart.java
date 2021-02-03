@@ -7,6 +7,7 @@ import food.restra.hungerbite.customer.feed.model.FoodItem;
  */
 public class Cart {
     String customerId;
+    String uploaderId;
     int itemCount;
     FoodItem item;
 
