@@ -20,4 +20,7 @@
     <string name="my_bucket">My Bucket</string>
     <string name="place_order">Place Order</string>
     <string name="payment_method">Payment Method</string>
+    <string name="new_request">New Request</string>
+    <string name="approved_request">Approved Request</string>
+    <string name="delivered_request">Delivered Request</string>
 </resources>

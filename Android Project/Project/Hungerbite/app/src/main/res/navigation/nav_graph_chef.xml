@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/fragmentRequestInfo"
-        android:name="food.restra.hungerbite.feature.chef.fragment.FragmentRequestInfo"
+        android:name="food.restra.hungerbite.feature.chef.order_info.fragment.FragmentRequestInfo"
         android:label="fragment_request_info"
         tools:layout="@layout/fragment_request_info" />
     <fragment
         android:id="@+id/fragmentItemList"
-        android:name="food.restra.hungerbite.feature.chef.fragment.FragmentItemList"
+        android:name="food.restra.hungerbite.feature.chef.item_list.fragment.FragmentItemList"
         android:label="fragment_item_list"
         tools:layout="@layout/fragment_item_list" />
     <fragment

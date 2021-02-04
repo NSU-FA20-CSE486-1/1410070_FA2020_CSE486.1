@@ -1,14 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.chef.fragment.FragmentRequestInfo">
+    android:background="#f6f6f6"
+    tools:context=".feature.chef.order_info.fragment.FragmentRequestInfo"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/llNewReq"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:background="@drawable/white_drawable_rounded"
+        android:layout_height="120dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:textColor="#3E4462"
+            android:textStyle="bold"
+            android:text="@string/new_request"
+            android:textSize="22sp"/>
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvNewReqCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            android:minWidth="60dp"
+            android:background="@drawable/new_req_background"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/llApprovedReq"
+        android:layout_width="match_parent"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:background="@drawable/white_drawable_rounded"
+        android:layout_height="120dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:textColor="#3E4462"
+            android:textStyle="bold"
+            android:text="@string/approved_request"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:id="@+id/tvAppReqCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            android:minWidth="60dp"
+            android:background="@drawable/approved_req_background"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/llCancelReq"
+        android:layout_width="match_parent"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:background="@drawable/white_drawable_rounded"
+        android:layout_height="120dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:textColor="#3E4462"
+            android:textStyle="bold"
+            android:text="Canceled Request"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:id="@+id/tvCancelReqCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            android:minWidth="60dp"
+            android:background="@drawable/canceled_req_background"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/llDeliveredReq"
+        android:layout_width="match_parent"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:background="@drawable/white_drawable_rounded"
+        android:layout_height="120dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:textColor="#3E4462"
+            android:textStyle="bold"
+            android:text="@string/delivered_request"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:id="@+id/tvDeliveredReqCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            android:minWidth="60dp"
+            android:background="@drawable/delivered_req_background"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+</LinearLayout>

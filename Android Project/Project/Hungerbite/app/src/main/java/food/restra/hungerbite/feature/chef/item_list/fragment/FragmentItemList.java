@@ -1,4 +1,4 @@
-package food.restra.hungerbite.feature.chef.fragment;
+package food.restra.hungerbite.feature.chef.item_list.fragment;
 
 import android.os.Bundle;
 
