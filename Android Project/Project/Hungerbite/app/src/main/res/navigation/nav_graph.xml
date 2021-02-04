@@ -25,4 +25,9 @@
         android:name="food.restra.hungerbite.feature.customer.feed.fragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/orderStatus"
+        android:name="food.restra.hungerbite.feature.customer.order_status.fragment.OrderStatus"
+        android:label="fragment_order_status"
+        tools:layout="@layout/fragment_order_status" />
 </navigation>

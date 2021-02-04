@@ -14,6 +14,10 @@
         android:icon="@drawable/ic_home"
         android:title="Search" />
     <item
+        android:id="@+id/orderStatus"
+        android:icon="@drawable/ic_home"
+        android:title="Order Status" />
+    <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_home"
         android:title="Profile" />
