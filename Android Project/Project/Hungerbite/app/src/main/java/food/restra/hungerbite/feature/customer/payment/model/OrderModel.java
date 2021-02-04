@@ -6,6 +6,7 @@ import food.restra.hungerbite.feature.customer.product_detail.model.Cart;
  * Created by Yeahia Muhammad Arif on 04,February,2021
  */
 public class OrderModel {
+    String orderId;
     String customerId;
     String chefId;
     String orderStatus;
@@ -59,5 +60,13 @@ public class OrderModel {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 }

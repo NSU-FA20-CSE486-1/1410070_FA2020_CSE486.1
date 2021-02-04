@@ -11,6 +11,7 @@ public class Constants {
     public static final String PENDING_STATUS = "pending";
     public static final String APPROVED_STATUS = "approved";
     public static final String DELIVERED_STATUS = "delivered";
+    public static final String CANCELED_STATUS = "canceled";
     public static final int BKASH_PAYMENT = 1;
     public static final int CARD_PAYMENT = 2;
     public static final int CASH_ON_DELIVERY = 3;
