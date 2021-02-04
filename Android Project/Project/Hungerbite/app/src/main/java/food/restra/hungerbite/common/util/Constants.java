@@ -5,4 +5,13 @@ package food.restra.hungerbite.common.util;
  */
 public class Constants {
     public static final String CART_ITEMS = "cart_items";
+    public static final String ORDER_ITEMS = "ORDER_ITEMS";
+    public static final String PAID_STATUS = "paid";
+    public static final String UNPAID_STATUS = "unpaid";
+    public static final String PENDING_STATUS = "pending";
+    public static final String APPROVED_STATUS = "approved";
+    public static final String DELIVERED_STATUS = "delivered";
+    public static final int BKASH_PAYMENT = 1;
+    public static final int CARD_PAYMENT = 2;
+    public static final int CASH_ON_DELIVERY = 3;
 }

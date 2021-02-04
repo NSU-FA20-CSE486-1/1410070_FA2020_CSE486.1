@@ -36,4 +36,12 @@ public class Cart {
     public void setItem(FoodItem item) {
         this.item = item;
     }
+
+    public String getUploaderId() {
+        return uploaderId;
+    }
+
+    public void setUploaderId(String uploaderId) {
+        this.uploaderId = uploaderId;
+    }
 }

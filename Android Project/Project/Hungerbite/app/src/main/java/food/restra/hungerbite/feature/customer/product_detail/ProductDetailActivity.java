@@ -90,6 +90,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             if(itemCount > 0){
                 Cart cart = new Cart();
                 cart.setCustomerId(mAuth.getCurrentUser().getUid());
+                cart.setUploaderId(item.getUploaderId());
                 cart.setItemCount(itemCount);
                 cart.setItem(item);
                 ProgressDialog progressDialog = new ProgressDialog(ProductDetailActivity.this);

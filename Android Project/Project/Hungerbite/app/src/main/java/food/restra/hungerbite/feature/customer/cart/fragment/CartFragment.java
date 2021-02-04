@@ -1,5 +1,6 @@
 package food.restra.hungerbite.feature.customer.cart.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,12 +20,16 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import food.restra.hungerbite.R;
+import food.restra.hungerbite.common.util.Constants;
 import food.restra.hungerbite.feature.customer.cart.adapter.CartAdapter;
+import food.restra.hungerbite.feature.customer.payment.activity.ActivityPayment;
+import food.restra.hungerbite.feature.customer.product_detail.ProductDetailActivity;
 import food.restra.hungerbite.feature.customer.product_detail.model.Cart;
 
 public class CartFragment extends Fragment implements CartAdapter.ItemClickListener {
@@ -42,6 +47,7 @@ public class CartFragment extends Fragment implements CartAdapter.ItemClickListe
     private AppCompatButton btPlaceOrder;
     private ImageView ivCartEmpty;
     private LinearLayout llRoot;
+    private Gson gson;
 
     public CartFragment() {
         // Required empty public constructor
@@ -65,6 +71,7 @@ public class CartFragment extends Fragment implements CartAdapter.ItemClickListe
         }
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        gson = new Gson();
     }
 
     @Override
@@ -94,6 +101,15 @@ public class CartFragment extends Fragment implements CartAdapter.ItemClickListe
         btPlaceOrder = view.findViewById(R.id.btPlaceOrder);
         ivCartEmpty = view.findViewById(R.id.ivCartEmpty);
         llRoot = view.findViewById(R.id.llRoot);
+
+        btPlaceOrder.setOnClickListener(view1 -> {
+            if(!cartList.isEmpty()){
+                Intent intent = new Intent(getContext(), ActivityPayment.class);
+                String item = gson.toJson(cartList);
+                intent.putExtra(Constants.ORDER_ITEMS, item);
+                startActivity(intent);
+            }
+        });
     }
 
     void getCartItem(){
