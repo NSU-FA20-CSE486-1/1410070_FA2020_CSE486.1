@@ -1,8 +1,5 @@
 package food.restra.hungerbite.feature.chef.order_info.adapter;
 
-/**
- * Created by Yeahia Muhammad Arif on 04,February,2021
- */
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,12 +18,12 @@ import food.restra.hungerbite.feature.customer.payment.model.OrderModel;
 /**
  * Created by Yeahia Muhammad Arif on 03,February,2021
  */
-public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.MyViewHolder> {
+public class ApprovedRequestAdapter extends RecyclerView.Adapter<ApprovedRequestAdapter.MyViewHolder> {
     private Context context;
     private List<OrderModel> orderModelList;
-    private NewRequestAdapter.ItemClickListener clickListener;
+    private ApprovedRequestAdapter.ItemClickListener clickListener;
 
-    public NewRequestAdapter(Context context, List<OrderModel> orderModelList, NewRequestAdapter.ItemClickListener clickListener) {
+    public ApprovedRequestAdapter(Context context, List<OrderModel> orderModelList, ApprovedRequestAdapter.ItemClickListener clickListener) {
         this.context = context;
         this.orderModelList = orderModelList;
         this.clickListener = clickListener;
@@ -44,13 +41,13 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
 
     @NonNull
     @Override
-    public NewRequestAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.row_new_request, parent, false);
-        return new NewRequestAdapter.MyViewHolder(view);
+    public ApprovedRequestAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.row_approved_request, parent, false);
+        return new ApprovedRequestAdapter.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewRequestAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ApprovedRequestAdapter.MyViewHolder holder, int position) {
         int price = Integer.parseInt(this.orderModelList.get(position).getCart().getItem().getPrice());
         int itemCount = this.orderModelList.get(position).getCart().getItemCount();
         holder.tvTitle.setText(this.orderModelList.get(position).getCart().getItem().getTitle());
@@ -62,9 +59,7 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
                 .apply(RequestOptions.centerCropTransform())
                 .into(holder.imageView);
 
-        holder.itemView.setOnClickListener(v -> clickListener.onOrderModelClick(orderModelList.get(position)));
-        holder.btDelete.setOnClickListener(v -> clickListener.onDelete(orderModelList.get(position), holder.getAdapterPosition()));
-        holder.switchButton.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+        holder.itemView.setOnClickListener(v -> clickListener.onOrderModelClick(orderModelList.get(position)));holder.switchButton.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             if(isChecked){
                 clickListener.onApprove(orderModelList.get(position), holder.getAdapterPosition());
             }
@@ -102,6 +97,5 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
     public interface ItemClickListener{
         public void onOrderModelClick(OrderModel OrderModel);
         public void onApprove(OrderModel OrderModel,int position);
-        public void onDelete(OrderModel OrderModel, int position);
     }
 }

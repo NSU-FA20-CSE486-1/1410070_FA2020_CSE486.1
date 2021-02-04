@@ -1,6 +1,5 @@
 package food.restra.hungerbite.feature.chef.order_info.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,13 +20,13 @@ import java.util.Map;
 
 import food.restra.hungerbite.R;
 import food.restra.hungerbite.common.util.Constants;
+import food.restra.hungerbite.feature.chef.order_info.adapter.ApprovedRequestAdapter;
 import food.restra.hungerbite.feature.chef.order_info.adapter.NewRequestAdapter;
-import food.restra.hungerbite.feature.customer.cart.adapter.CartAdapter;
 import food.restra.hungerbite.feature.customer.payment.model.OrderModel;
-import food.restra.hungerbite.feature.customer.product_detail.model.Cart;
 
-public class NewRequestActivity extends AppCompatActivity implements NewRequestAdapter.ItemClickListener {
-    NewRequestAdapter adapter;
+public class ApprovedRequestActivity extends AppCompatActivity implements ApprovedRequestAdapter.ItemClickListener {
+
+    ApprovedRequestAdapter adapter;
     List<OrderModel> orderModelList = new ArrayList<>();
     Gson gson;
     FirebaseFirestore db;
@@ -38,7 +35,7 @@ public class NewRequestActivity extends AppCompatActivity implements NewRequestA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_request);
+        setContentView(R.layout.activity_approved_request);
         gson = new Gson();
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -53,7 +50,7 @@ public class NewRequestActivity extends AppCompatActivity implements NewRequestA
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-        adapter =  new NewRequestAdapter(getApplicationContext(), orderModelList, this);
+        adapter =  new ApprovedRequestAdapter(getApplicationContext(), orderModelList, this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -65,29 +62,14 @@ public class NewRequestActivity extends AppCompatActivity implements NewRequestA
     @Override
     public void onApprove(OrderModel orderModel, int position) {
         Map<String,Object> map = new HashMap<>();
-        map.put("orderStatus", Constants.APPROVED_STATUS);
+        map.put("orderStatus", Constants.DELIVERED_STATUS);
         db.collection("orders")
                 .document(orderModel.getOrderId())
                 .update(map)
                 .addOnCompleteListener(task -> {
-                    Toast.makeText(getApplicationContext(), "Item Approved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Item Delivered", Toast.LENGTH_SHORT).show();
                     adapter.delete(position);
                 });
-    }
-
-    @Override
-    public void onDelete(OrderModel orderModel, int position) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("orderStatus", Constants.CANCELED_STATUS);
-        db.collection("orders")
-                .document(orderModel.getOrderId())
-                .update(map)
-                .addOnCompleteListener(task -> {
-                    Toast.makeText(getApplicationContext(), "Item Canceled", Toast.LENGTH_SHORT).show();
-                    adapter.delete(position);
-                });
-
-
     }
 
     @Override

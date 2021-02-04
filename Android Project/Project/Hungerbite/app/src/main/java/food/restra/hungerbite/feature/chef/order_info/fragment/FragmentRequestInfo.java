@@ -28,6 +28,9 @@ import java.util.List;
 
 import food.restra.hungerbite.R;
 import food.restra.hungerbite.common.util.Constants;
+import food.restra.hungerbite.feature.chef.order_info.activity.ApprovedRequestActivity;
+import food.restra.hungerbite.feature.chef.order_info.activity.CanceledRequestActivity;
+import food.restra.hungerbite.feature.chef.order_info.activity.DeliveredOrderActivity;
 import food.restra.hungerbite.feature.chef.order_info.activity.NewRequestActivity;
 import food.restra.hungerbite.feature.customer.feed.model.FoodItem;
 import food.restra.hungerbite.feature.customer.payment.model.OrderModel;
@@ -103,16 +106,24 @@ public class FragmentRequestInfo extends Fragment {
         tvDeliveredReqCount = view.findViewById(R.id.tvDeliveredReqCount);
 
         llApprovedReq.setOnClickListener(view1 -> {
-
-
+            Intent intent = new Intent(getContext(), ApprovedRequestActivity.class);
+            String orderList = gson.toJson(approvedList);
+            intent.putExtra(Constants.NEW_REQUST_DATA, orderList);
+            startActivityForResult(intent, RESULT_CODE);
         });
 
         llCanceledReq.setOnClickListener(view1 -> {
-
+            Intent intent = new Intent(getContext(), CanceledRequestActivity.class);
+            String orderList = gson.toJson(canceledList);
+            intent.putExtra(Constants.NEW_REQUST_DATA, orderList);
+            startActivityForResult(intent, RESULT_CODE);
         });
 
         llDeliveredReq.setOnClickListener(view1 -> {
-
+            Intent intent = new Intent(getContext(), DeliveredOrderActivity.class);
+            String orderList = gson.toJson(deliveredList);
+            intent.putExtra(Constants.NEW_REQUST_DATA, orderList);
+            startActivityForResult(intent, RESULT_CODE);
         });
 
         llNewReq.setOnClickListener(view1 -> {

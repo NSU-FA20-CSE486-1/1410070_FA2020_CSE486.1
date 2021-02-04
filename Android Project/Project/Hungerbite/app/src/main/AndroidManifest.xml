@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Hungerbite">
-        <activity android:name=".feature.chef.order_info.activity.NewRequestActivity"></activity>
+        <activity android:name=".feature.chef.order_info.activity.DeliveredOrderActivity"></activity>
+        <activity android:name=".feature.chef.order_info.activity.CanceledRequestActivity" />
+        <activity android:name=".feature.chef.order_info.activity.ApprovedRequestActivity" />
+        <activity android:name=".feature.chef.order_info.activity.NewRequestActivity" />
         <activity android:name=".feature.customer.payment.activity.ActivityPayment" />
         <activity android:name=".customer.checkout.ActivityCheckout" />
         <activity android:name=".feature.customer.product_detail.ProductDetailActivity" />
