@@ -1,5 +1,6 @@
 package food.restra.hungerbite.feature.chef.order_info.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,52 +21,41 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import food.restra.hungerbite.R;
 import food.restra.hungerbite.common.util.Constants;
+import food.restra.hungerbite.feature.chef.order_info.activity.NewRequestActivity;
 import food.restra.hungerbite.feature.customer.feed.model.FoodItem;
 import food.restra.hungerbite.feature.customer.payment.model.OrderModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentRequestInfo#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class FragmentRequestInfo extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     RelativeLayout llNewReq, llApprovedReq, llCanceledReq, llDeliveredReq;
     TextView tvNewReqCount, tvApprovedReqCount, tvCanceledReqCount, tvDeliveredReqCount;
     FirebaseFirestore db;
     FirebaseAuth auth;
+    Gson gson;
     List<OrderModel> newReqList = new ArrayList<>();
     List<OrderModel> approvedList = new ArrayList<>();
     List<OrderModel> deliveredList = new ArrayList<>();
     List<OrderModel> canceledList = new ArrayList<>();
+    private static final int RESULT_CODE = 2;
 
     public FragmentRequestInfo() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentRequestInfo.
-     */
-    // TODO: Rename and change types and number of parameters
     public static FragmentRequestInfo newInstance(String param1, String param2) {
         FragmentRequestInfo fragment = new FragmentRequestInfo();
         Bundle args = new Bundle();
@@ -83,6 +74,7 @@ public class FragmentRequestInfo extends Fragment {
         }
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+        gson = new Gson();
     }
 
     @Override
@@ -112,6 +104,7 @@ public class FragmentRequestInfo extends Fragment {
 
         llApprovedReq.setOnClickListener(view1 -> {
 
+
         });
 
         llCanceledReq.setOnClickListener(view1 -> {
@@ -123,7 +116,10 @@ public class FragmentRequestInfo extends Fragment {
         });
 
         llNewReq.setOnClickListener(view1 -> {
-
+            Intent intent = new Intent(getContext(), NewRequestActivity.class);
+            String orderList = gson.toJson(newReqList);
+            intent.putExtra(Constants.NEW_REQUST_DATA, orderList);
+            startActivityForResult(intent, RESULT_CODE);
         });
     }
 
@@ -131,22 +127,25 @@ public class FragmentRequestInfo extends Fragment {
         db.collection("orders")
                 .whereEqualTo("chefId", auth.getCurrentUser().getUid())
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        List<OrderModel> orderModelList = new ArrayList<>();
-                        for (DocumentSnapshot document : task.getResult()) {
-                            if (document.exists()) {
-                                OrderModel orderModel = document.toObject(OrderModel.class);
-                                orderModelList.add(orderModel);
-                            }
+                .addOnCompleteListener(task -> {
+                    List<OrderModel> orderModelList = new ArrayList<>();
+                    for (DocumentSnapshot document : task.getResult()) {
+                        if (document.exists()) {
+                            OrderModel orderModel = document.toObject(OrderModel.class);
+                            orderModel.setOrderId(document.getId());
+                            orderModelList.add(orderModel);
                         }
-                        updateOrderInfo(orderModelList);
                     }
+                    updateOrderInfo(orderModelList);
                 });
     }
 
     void updateOrderInfo(List<OrderModel> orderModelList){
+        newReqList.clear();
+        approvedList.clear();
+        deliveredList.clear();
+        canceledList.clear();
+
         int newReqCount = 0;
         int cancelReqCount = 0;
         int deliveredReqCount = 0;
@@ -177,5 +176,9 @@ public class FragmentRequestInfo extends Fragment {
         tvApprovedReqCount.setText(String.valueOf(approvedReqCount));
     }
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        getServerData();
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }
