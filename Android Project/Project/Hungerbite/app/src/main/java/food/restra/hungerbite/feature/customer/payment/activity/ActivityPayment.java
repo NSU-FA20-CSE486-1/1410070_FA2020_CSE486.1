@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,6 +33,7 @@ public class ActivityPayment extends AppCompatActivity {
     Gson gson;
     List<Cart> carts;
     FirebaseFirestore db;
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,7 @@ public class ActivityPayment extends AppCompatActivity {
         llCashOnDelivery = findViewById(R.id.llCashOnDelivery);
         gson = new Gson();
         db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         String itemJson = getIntent().getStringExtra(Constants.ORDER_ITEMS);
         carts = gson.fromJson(itemJson, new TypeToken<List<Cart>>(){}.getType());
@@ -54,6 +57,11 @@ public class ActivityPayment extends AppCompatActivity {
             progressDialog.show();
             for (OrderModel order:orderList) {
                 DocumentReference docRef = db.collection("orders").document();
+                DocumentReference cartRef = db.collection("users")
+                        .document(auth.getCurrentUser().getUid())
+                        .collection("cart")
+                        .document(order.getCart().getCartId());
+                batch.delete(cartRef);
                 batch.set(docRef, order);
             }
             batch.commit().addOnCompleteListener(task -> {
@@ -73,6 +81,11 @@ public class ActivityPayment extends AppCompatActivity {
             progressDialog.show();
             for (OrderModel order:orderList) {
                 DocumentReference docRef = db.collection("orders").document();
+                DocumentReference cartRef = db.collection("users")
+                        .document(auth.getCurrentUser().getUid())
+                        .collection("cart")
+                        .document(order.getCart().getCartId());
+                batch.delete(cartRef);
                 batch.set(docRef, order);
             }
             batch.commit().addOnCompleteListener(task -> {
@@ -92,6 +105,11 @@ public class ActivityPayment extends AppCompatActivity {
             progressDialog.show();
             for (OrderModel order:orderList) {
                 DocumentReference docRef = db.collection("orders").document();
+                DocumentReference cartRef = db.collection("users")
+                        .document(auth.getCurrentUser().getUid())
+                        .collection("cart")
+                        .document(order.getCart().getCartId());
+                batch.delete(cartRef);
                 batch.set(docRef, order);
             }
             batch.commit().addOnCompleteListener(task -> {

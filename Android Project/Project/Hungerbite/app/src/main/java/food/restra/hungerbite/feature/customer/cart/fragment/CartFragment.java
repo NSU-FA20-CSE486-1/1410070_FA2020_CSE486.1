@@ -122,6 +122,7 @@ public class CartFragment extends Fragment implements CartAdapter.ItemClickListe
                         for (DocumentSnapshot document : task.getResult()) {
                             if (document.exists()) {
                                 Cart cart = document.toObject(Cart.class);
+                                cart.setCartId(document.getId());
                                 cartList.add(cart);
                             }
                         }

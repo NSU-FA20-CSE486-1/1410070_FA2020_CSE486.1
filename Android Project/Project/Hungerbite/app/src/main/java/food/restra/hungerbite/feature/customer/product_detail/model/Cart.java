@@ -6,6 +6,7 @@ import food.restra.hungerbite.feature.customer.feed.model.FoodItem;
  * Created by Yeahia Muhammad Arif on 03,February,2021
  */
 public class Cart {
+    String cartId;
     String customerId;
     String uploaderId;
     int itemCount;
@@ -39,6 +40,14 @@ public class Cart {
 
     public String getUploaderId() {
         return uploaderId;
+    }
+
+    public String getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
     }
 
     public void setUploaderId(String uploaderId) {
