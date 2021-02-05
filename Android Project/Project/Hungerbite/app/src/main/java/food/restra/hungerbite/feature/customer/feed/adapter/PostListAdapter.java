@@ -51,7 +51,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.onMovieClick(postList.get(position));
+                clickListener.onItemClick(postList.get(position));
             }
         });
         Glide.with(context)
@@ -83,6 +83,6 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
 
 
     public interface ItemClickListener{
-        public void onMovieClick(FoodItem movie);
+        public void onItemClick(FoodItem movie);
     }
 }

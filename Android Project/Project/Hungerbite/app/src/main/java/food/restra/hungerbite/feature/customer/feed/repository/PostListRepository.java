@@ -44,4 +44,14 @@ public class PostListRepository {
 
     return new PostListLiveData(querySnapshotTask);
   }
+
+  public PostListLiveData getSearchedData(String query) {
+    Task<QuerySnapshot> querySnapshotTask = firebaseFirestore
+            .collection("posts")
+            .whereGreaterThanOrEqualTo("title",query)
+            .limit(30)
+            .get();
+
+    return new PostListLiveData(querySnapshotTask);
+  }
 }

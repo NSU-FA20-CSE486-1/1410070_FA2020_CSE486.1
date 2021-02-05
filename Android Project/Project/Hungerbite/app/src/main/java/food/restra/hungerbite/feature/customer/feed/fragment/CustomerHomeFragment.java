@@ -178,7 +178,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
     }
 
     @Override
-    public void onMovieClick(FoodItem movie) {
+    public void onItemClick(FoodItem movie) {
         Intent intent = new Intent(getContext(), ProductDetailActivity.class);
         String item = gson.toJson(movie);
         intent.putExtra("item", item);

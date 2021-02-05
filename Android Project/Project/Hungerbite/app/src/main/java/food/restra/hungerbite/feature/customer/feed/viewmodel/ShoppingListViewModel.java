@@ -33,6 +33,11 @@ public class ShoppingListViewModel extends ViewModel {
     return liveData;
   }
 
+  public LiveData<List<FoodItem>> getSearchedLiveData(String query){
+    liveData = repository.getSearchedData(query);
+    return liveData;
+  }
+
   public LiveData<List<FoodItem>> getShoppingList() {
     return liveData.postList;
   }
