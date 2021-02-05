@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_request_info" />
     <fragment
         android:id="@+id/fragmentItemList"
-        android:name="food.restra.hungerbite.feature.chef.item_list.fragment.FragmentItemList"
+        android:name="food.restra.hungerbite.feature.chef.item_list.fragment.FragmentItemListContainer"
         android:label="fragment_item_list"
-        tools:layout="@layout/fragment_item_list" />
+        tools:layout="@layout/fragment_item_list_container" />
     <fragment
         android:id="@+id/fragmentAddItem"
         android:name="food.restra.hungerbite.feature.chef.addfood.fragment.FragmentAddItem"

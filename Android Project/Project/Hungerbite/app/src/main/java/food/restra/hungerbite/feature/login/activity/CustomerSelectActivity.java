@@ -1,4 +1,4 @@
-package food.restra.hungerbite.feature.login;
+package food.restra.hungerbite.feature.login.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import food.restra.hungerbite.R;
 import food.restra.hungerbite.feature.chef.ChefHomeActivity;
-import food.restra.hungerbite.feature.customer.feed.activity.CustomerHomeActivity;
+import food.restra.hungerbite.feature.customer.CustomerHomeActivity;
 
 public class CustomerSelectActivity extends AppCompatActivity {
     LinearLayout layoutCustomer, layoutChef, layoutDeliveryMan;

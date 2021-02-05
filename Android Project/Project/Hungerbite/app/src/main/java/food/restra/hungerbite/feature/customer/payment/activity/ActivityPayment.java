@@ -1,6 +1,5 @@
 package food.restra.hungerbite.feature.customer.payment.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -9,11 +8,8 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 import com.google.gson.Gson;
@@ -24,7 +20,7 @@ import java.util.List;
 
 import food.restra.hungerbite.R;
 import food.restra.hungerbite.common.util.Constants;
-import food.restra.hungerbite.feature.customer.feed.activity.CustomerHomeActivity;
+import food.restra.hungerbite.feature.customer.CustomerHomeActivity;
 import food.restra.hungerbite.feature.customer.payment.model.OrderModel;
 import food.restra.hungerbite.feature.customer.product_detail.model.Cart;
 

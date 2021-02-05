@@ -1,4 +1,4 @@
-package food.restra.hungerbite.feature.login;
+package food.restra.hungerbite.feature.login.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,4 +1,4 @@
-package food.restra.hungerbite.feature.customer.feed.activity;
+package food.restra.hungerbite.feature.customer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import food.restra.hungerbite.R;
-import food.restra.hungerbite.feature.login.LoginActivity;
+import food.restra.hungerbite.feature.login.activity.LoginActivity;
 
 public class CustomerHomeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;

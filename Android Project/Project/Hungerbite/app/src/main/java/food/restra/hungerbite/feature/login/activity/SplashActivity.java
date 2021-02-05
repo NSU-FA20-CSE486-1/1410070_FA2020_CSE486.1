@@ -1,4 +1,4 @@
-package food.restra.hungerbite.feature.login;
+package food.restra.hungerbite.feature.login.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import food.restra.hungerbite.R;
 import food.restra.hungerbite.feature.chef.ChefHomeActivity;
-import food.restra.hungerbite.feature.customer.feed.activity.CustomerHomeActivity;
+import food.restra.hungerbite.feature.customer.CustomerHomeActivity;
 import food.restra.hungerbite.feature.login.model.AppUser;
 
 public class SplashActivity extends AppCompatActivity {

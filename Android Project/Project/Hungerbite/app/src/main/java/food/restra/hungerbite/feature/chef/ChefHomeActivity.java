@@ -16,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import food.restra.hungerbite.R;
-import food.restra.hungerbite.feature.login.LoginActivity;
+import food.restra.hungerbite.feature.login.activity.LoginActivity;
 
 public class ChefHomeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
