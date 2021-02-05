@@ -23,4 +23,5 @@
     <string name="new_request">New Request</string>
     <string name="approved_request">Approved Request</string>
     <string name="delivered_request">Delivered Request</string>
+    <string name="edit_item">Edit Item</string>
 </resources>

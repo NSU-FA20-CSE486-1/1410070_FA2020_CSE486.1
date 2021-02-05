@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/ivNoItemFound"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/no_food_found"

@@ -109,7 +109,7 @@ public class FragmentItemListContainer extends Fragment {
                 return new FragmentItemList().newInstance("breakfast", "");
             }else if(position == 1){
                 return new FragmentItemList().newInstance("lunch", "");
-            }else if(position == 1){
+            }else if(position == 2){
                 return new FragmentItemList().newInstance("dinner", "");
             }else{
                 return new FragmentItemList().newInstance("dessert", "");

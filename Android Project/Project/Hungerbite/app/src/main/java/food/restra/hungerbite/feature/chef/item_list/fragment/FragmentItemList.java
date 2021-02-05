@@ -1,9 +1,12 @@
 package food.restra.hungerbite.feature.chef.item_list.fragment;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,14 +16,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import food.restra.hungerbite.R;
+import food.restra.hungerbite.common.util.Constants;
+import food.restra.hungerbite.feature.chef.edit_item.EditItemActivity;
 import food.restra.hungerbite.feature.chef.item_list.adapter.ItemListAdapter;
 import food.restra.hungerbite.feature.customer.feed.model.FoodItem;
 import food.restra.hungerbite.feature.customer.order_status.adapter.OrderStatusAdapter;
@@ -114,12 +121,37 @@ public class FragmentItemList extends Fragment implements ItemListAdapter.ItemCl
     }
 
     @Override
-    public void onEdit(FoodItem FoodItem, int position) {
-
+    public void onEdit(FoodItem foodItem, int position) {
+        Intent intent = new Intent(getContext(), EditItemActivity.class);
+        intent.putExtra(Constants.EDIT_ITEM_DATA, new Gson().toJson(foodItem));
+        startActivity(intent);
     }
 
     @Override
-    public void onDelete(FoodItem FoodItem, int position) {
+    public void onDelete(FoodItem item, int position) {
+        AlertDialog diaBox = AskOption(item, position);
+        diaBox.show();
+    }
+    private AlertDialog AskOption(FoodItem item, int position)
+    {
+        return new AlertDialog.Builder(getActivity())
+                // set message, title, and icon
+                .setTitle("Delete")
+                .setMessage("Do you want to Delete")
 
+                .setPositiveButton("Delete", (dialog, whichButton) -> {
+                    db.collection("posts")
+                            .document(item.getProductId())
+                            .delete()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    adapter.delete(position);
+                                }
+                            });
+                    dialog.dismiss();
+                })
+                .setNegativeButton("cancel", (dialog, which) -> dialog.dismiss())
+                .create();
     }
 }
