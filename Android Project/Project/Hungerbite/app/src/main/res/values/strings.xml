@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Hungerbite</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="lunch">Lunch</string>
     <string name="dinner">Dinner</string>
@@ -24,4 +23,16 @@
     <string name="approved_request">Approved Request</string>
     <string name="delivered_request">Delivered Request</string>
     <string name="edit_item">Edit Item</string>
+    <string name="edit">Edit</string>
+    <string-array name="location">
+        <item>Badda</item>
+        <item>Mirpur</item>
+        <item>Bashundara</item>
+        <item>Banani</item>
+        <item>Baridhara</item>
+        <item>Farmgate</item>
+        <item>Gulshan</item>
+        <item>Jatrabari</item>
+        <item>Khilkhet</item>
+    </string-array>
 </resources>

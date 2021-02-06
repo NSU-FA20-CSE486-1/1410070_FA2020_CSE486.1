@@ -3,7 +3,9 @@ package food.restra.hungerbite.feature.login.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -18,15 +20,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
 
 import food.restra.hungerbite.R;
+import food.restra.hungerbite.common.util.Constants;
 import food.restra.hungerbite.feature.chef.ChefHomeActivity;
 import food.restra.hungerbite.feature.customer.CustomerHomeActivity;
 import food.restra.hungerbite.feature.login.model.AppUser;
+import food.restra.hungerbite.feature.login.model.Profile;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     private static final String TAG = "EmailPassword";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         buttonSignup.setOnClickListener(view -> {
             mAuth.createUserWithEmailAndPassword(editText.getText().toString(), passwordText.getText().toString())
@@ -84,26 +93,24 @@ public class LoginActivity extends AppCompatActivity {
         db.collection("users")
                 .document(mAuth.getCurrentUser().getUid())
                 .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        AppUser user = documentSnapshot.toObject(AppUser.class);
-                        Intent intent;
-                        switch(user.getType()) {
-                            case "customer":
-                                intent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
-                                break;
-                            case "chef":
-                                intent = new Intent(LoginActivity.this, ChefHomeActivity.class);
-                                break;
-                            default:
-                                intent = null;
-                                // code block
-                        }
-                        if(intent != null){
-                            startActivity(intent);
-                            finish();
-                        }
+                .addOnSuccessListener(documentSnapshot -> {
+                    Profile user = documentSnapshot.toObject(Profile.class);
+                    editor.putString(Constants.USER_DATA, new Gson().toJson(user));
+                    Intent intent;
+                    switch(user.getType()) {
+                        case "customer":
+                            intent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
+                            break;
+                        case "chef":
+                            intent = new Intent(LoginActivity.this, ChefHomeActivity.class);
+                            break;
+                        default:
+                            intent = null;
+                            // code block
+                    }
+                    if(intent != null){
+                        startActivity(intent);
+                        finish();
                     }
                 });
     }

@@ -12,4 +12,8 @@
         android:id="@+id/fragmentAddItem"
         android:icon="@drawable/ic_home"
         android:title="Search" />
+    <item
+        android:id="@+id/fragmentProfile"
+        android:icon="@drawable/ic_home"
+        android:title="Profile" />
 </menu>

@@ -20,4 +20,9 @@
         android:name="food.restra.hungerbite.feature.chef.addfood.fragment.FragmentAddItem"
         android:label="fragment_add_item"
         tools:layout="@layout/fragment_add_item" />
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="food.restra.hungerbite.feature.chef.profile.ChefProfileFragment"
+        android:label="fragment_chef_profile"
+        tools:layout="@layout/fragment_chef_profile" />
 </navigation>
