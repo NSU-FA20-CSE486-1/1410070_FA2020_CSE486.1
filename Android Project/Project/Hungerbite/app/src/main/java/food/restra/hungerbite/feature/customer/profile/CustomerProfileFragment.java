@@ -1,15 +1,15 @@
-package food.restra.hungerbite.feature.chef.profile;
+package food.restra.hungerbite.feature.customer.profile;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,20 +29,25 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.util.UUID;
+
 import food.restra.hungerbite.R;
 import food.restra.hungerbite.feature.login.model.Profile;
 
 import static android.app.Activity.RESULT_OK;
 
-public class ChefProfileFragment extends Fragment {
+
+public class CustomerProfileFragment extends Fragment {
+
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private final int PICK_IMAGE_REQUEST = 22;
+
     private String mParam1;
     private String mParam2;
+    private final int PICK_IMAGE_REQUEST = 22;
     private EditText etName;
     private Spinner spLocation;
     private ImageView ivItemPhoto, ivPhotoAdd;
@@ -55,12 +60,12 @@ public class ChefProfileFragment extends Fragment {
     private StorageReference storageReference;
     private Button btEdit;
 
-    public ChefProfileFragment() {
+    public CustomerProfileFragment() {
         // Required empty public constructor
     }
 
-    public static ChefProfileFragment newInstance(String param1, String param2) {
-        ChefProfileFragment fragment = new ChefProfileFragment();
+    public static CustomerProfileFragment newInstance(String param1, String param2) {
+        CustomerProfileFragment fragment = new CustomerProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -78,18 +83,18 @@ public class ChefProfileFragment extends Fragment {
         initInstances();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_chef_profile, container, false);
-    }
-
     void initInstances(){
         gson = new Gson();
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     @Override
@@ -112,7 +117,7 @@ public class ChefProfileFragment extends Fragment {
             item.setEmail(mAuth.getCurrentUser().getEmail());
             item.setImage(imageUrl);
             item.setLocation(spLocation.getSelectedItem().toString());
-            item.setType("chef");
+            item.setType("customer");
 
             ProgressDialog progressDialog = new ProgressDialog(getActivity());
             progressDialog.setTitle("Uploading...");
