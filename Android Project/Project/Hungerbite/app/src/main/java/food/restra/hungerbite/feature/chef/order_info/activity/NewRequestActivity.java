@@ -84,7 +84,8 @@ public class NewRequestActivity extends AppCompatActivity implements NewRequestA
                 .update(map)
                 .addOnCompleteListener(task -> {
                     Toast.makeText(getApplicationContext(), "Item Canceled", Toast.LENGTH_SHORT).show();
-                    adapter.delete(position);
+                    orderModelList.remove(position);
+                    adapter.notifyDataSetChanged();
                 });
 
 

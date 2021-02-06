@@ -67,7 +67,8 @@ public class CanceledRequestActivity extends AppCompatActivity implements Cancel
                 .document(orderModel.getOrderId())
                 .update(map)
                 .addOnCompleteListener(task -> {
-                    adapter.delete(position);
+                    orderModelList.remove(position);
+                    adapter.notifyDataSetChanged();
                 });
     }
 

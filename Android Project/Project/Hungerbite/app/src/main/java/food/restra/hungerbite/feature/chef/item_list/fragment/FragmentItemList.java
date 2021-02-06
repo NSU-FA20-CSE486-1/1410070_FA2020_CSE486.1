@@ -146,7 +146,8 @@ public class FragmentItemList extends Fragment implements ItemListAdapter.ItemCl
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    adapter.delete(position);
+                                    foodItemList.remove(position);
+                                    adapter.notifyDataSetChanged();
                                 }
                             });
                     dialog.dismiss();

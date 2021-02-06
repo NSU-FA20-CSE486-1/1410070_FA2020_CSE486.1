@@ -68,7 +68,8 @@ public class ApprovedRequestActivity extends AppCompatActivity implements Approv
                 .update(map)
                 .addOnCompleteListener(task -> {
                     Toast.makeText(getApplicationContext(), "Item Delivered", Toast.LENGTH_SHORT).show();
-                    adapter.delete(position);
+                    orderModelList.remove(position);
+                    adapter.notifyDataSetChanged();
                 });
     }
 

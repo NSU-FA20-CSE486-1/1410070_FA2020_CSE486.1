@@ -66,7 +66,8 @@ public class DeliveredOrderActivity extends AppCompatActivity implements Cancele
                 .document(orderModel.getOrderId())
                 .update(map)
                 .addOnCompleteListener(task -> {
-                    adapter.delete(position);
+                    orderModelList.remove(position);
+                    adapter.notifyDataSetChanged();
                 });
     }
 
