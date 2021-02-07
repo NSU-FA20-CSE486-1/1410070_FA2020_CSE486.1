@@ -1,5 +1,6 @@
 package food.restra.hungerbite.feature.chef.edit_item;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -10,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -107,6 +109,8 @@ public class EditItemActivity extends AppCompatActivity {
         ivPhotoAdd.setOnClickListener(view12 -> {
             selectImage();
         });
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void loadData(){
@@ -194,6 +198,17 @@ public class EditItemActivity extends AppCompatActivity {
                                         / taskSnapshot.getTotalByteCount());
                                 progressDialog.setMessage("Uploaded " + (int) progress + "%");
                             });
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

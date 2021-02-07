@@ -17,7 +17,6 @@
         <activity android:name=".feature.chef.order_info.activity.ApprovedRequestActivity" />
         <activity android:name=".feature.chef.order_info.activity.NewRequestActivity" />
         <activity android:name=".feature.customer.payment.activity.ActivityPayment" />
-        <activity android:name=".customer.checkout.ActivityCheckout" />
         <activity android:name=".feature.customer.product_detail.ProductDetailActivity" />
         <activity android:name=".feature.chef.ChefHomeActivity" />
         <activity android:name=".feature.customer.CustomerHomeActivity" />

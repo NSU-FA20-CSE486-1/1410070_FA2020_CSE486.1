@@ -7,11 +7,11 @@
         android:title="Home" />
     <item
         android:id="@+id/cartFragment"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_cart"
         android:title="Cart" />
     <item
         android:id="@+id/foodSearchFragment"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_search"
         android:title="Search" />
     <item
         android:id="@+id/orderStatus"
@@ -19,6 +19,6 @@
         android:title="Order Status" />
     <item
         android:id="@+id/profileFragment"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_profile"
         android:title="Profile" />
 </menu>

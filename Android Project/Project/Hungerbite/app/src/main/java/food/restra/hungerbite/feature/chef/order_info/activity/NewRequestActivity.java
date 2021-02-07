@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -47,6 +48,7 @@ public class NewRequestActivity extends AppCompatActivity implements NewRequestA
         String data = getIntent().getStringExtra(Constants.NEW_REQUST_DATA);
         orderModelList = gson.fromJson(data, new TypeToken<List<OrderModel>>(){}.getType());
         initRecycleview();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     void initRecycleview(){
@@ -95,5 +97,16 @@ public class NewRequestActivity extends AppCompatActivity implements NewRequestA
     public void onBackPressed() {
         setResult(RESULT_OK);
         super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

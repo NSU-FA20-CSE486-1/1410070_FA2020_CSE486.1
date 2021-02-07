@@ -28,12 +28,14 @@
                     android:layout_weight="1"
                     android:layout_margin="5dp"
                     android:orientation="vertical"
-                    android:background="@drawable/food_category_unselect">
+                    android:background="@drawable/food_category_selected">
                     <ImageView
+                        android:id="@+id/ivDinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="15dp"
-                        android:src="@drawable/ic_dinner"/>
+                        android:src="@drawable/ic_dinner"
+                        app:tint="@color/white" />
 
                 </LinearLayout>
                 <TextView
@@ -61,6 +63,7 @@
                     android:orientation="vertical"
                     android:background="@drawable/food_category_unselect">
                     <ImageView
+                        android:id="@+id/ivLunch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="15dp"
@@ -92,6 +95,7 @@
                     android:orientation="vertical"
                     android:background="@drawable/food_category_unselect">
                     <ImageView
+                        android:id="@+id/ivBreakfast"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="15dp"
@@ -124,6 +128,7 @@
                     android:orientation="vertical"
                     android:background="@drawable/food_category_unselect">
                     <ImageView
+                        android:id="@+id/ivDessert"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="15dp"

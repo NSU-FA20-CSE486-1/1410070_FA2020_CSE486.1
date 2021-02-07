@@ -1,11 +1,13 @@
 package food.restra.hungerbite.feature.customer.product_detail;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -123,5 +125,17 @@ public class ProductDetailActivity extends AppCompatActivity {
         btPlus = findViewById(R.id.btPlus);
         btMinus = findViewById(R.id.btMinus);
         btAddCart = findViewById(R.id.btAddCart);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

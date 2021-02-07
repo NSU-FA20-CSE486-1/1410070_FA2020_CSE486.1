@@ -1,10 +1,14 @@
 package food.restra.hungerbite.feature.customer.feed.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,6 +45,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
     private PostListAdapter adapter;
     private ShoppingListViewModel viewModel;
     private LinearLayout llDinner, llLunch, llBreakfast, llDesert;
+    private ImageView ivDinner, ivLunch, ivBreakfast, ivDesert;
     private Gson gson;
 
 
@@ -84,6 +89,12 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
         llLunch = view.findViewById(R.id.llLunch);
         llBreakfast = view.findViewById(R.id.llBreakfast);
         llDesert = view.findViewById(R.id.lldesert);
+        ivLunch = view.findViewById(R.id.ivLunch);
+        ivBreakfast = view.findViewById(R.id.ivBreakfast);
+        ivDinner = view.findViewById(R.id.ivDinner);
+        ivDesert = view.findViewById(R.id.ivDessert);
+
+
         ImageView imageView = view.findViewById(R.id.ivNoItemFound);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -107,10 +118,10 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
                     }
                 }
             });
+            changeViewResource(llDinner, ivDinner);
         });
 
         llLunch.setOnClickListener(view1 -> {
-            Toast.makeText(getContext(), "lunch", Toast.LENGTH_LONG).show();
             viewModel.getLunchListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
             viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
                 if(postModels != null) {
@@ -124,10 +135,10 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
                     }
                 }
             });
+            changeViewResource(llLunch, ivLunch);
         });
 
         llBreakfast.setOnClickListener(view1 -> {
-            Toast.makeText(getContext(), "breakfast", Toast.LENGTH_LONG).show();
             viewModel.getBreakfastListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
             viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
                 if(postModels != null) {
@@ -141,10 +152,10 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
                     }
                 }
             });
+            changeViewResource(llBreakfast, ivBreakfast);
         });
 
         llDesert.setOnClickListener(view1 -> {
-            Toast.makeText(getContext(), "desert", Toast.LENGTH_LONG).show();
             viewModel.getDessertLiveData().observe(getViewLifecycleOwner(), Observable -> {});
             viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
                 if(postModels != null) {
@@ -158,6 +169,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
                     }
                 }
             });
+            changeViewResource(llDesert, ivDesert);
         });
 
 
@@ -175,6 +187,22 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
             }
         });
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void changeViewResource(LinearLayout layout, ImageView icon){
+        llDinner.setBackgroundResource(R.drawable.food_category_unselect);
+        llLunch.setBackgroundResource(R.drawable.food_category_unselect);
+        llBreakfast.setBackgroundResource(R.drawable.food_category_unselect);
+        llDesert.setBackgroundResource(R.drawable.food_category_unselect);
+
+        ivDesert.setColorFilter(ContextCompat.getColor(getContext(), R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
+        ivDinner.setColorFilter(ContextCompat.getColor(getContext(), R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
+        ivBreakfast.setColorFilter(ContextCompat.getColor(getContext(), R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
+        ivLunch.setColorFilter(ContextCompat.getColor(getContext(), R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
+
+        icon.setColorFilter(ContextCompat.getColor(getContext(), R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+
+        layout.setBackgroundResource(R.drawable.food_category_selected);
     }
 
     @Override

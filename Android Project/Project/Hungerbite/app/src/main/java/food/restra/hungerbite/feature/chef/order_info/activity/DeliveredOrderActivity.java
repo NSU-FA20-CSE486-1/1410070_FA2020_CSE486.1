@@ -1,10 +1,12 @@
 package food.restra.hungerbite.feature.chef.order_info.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,6 +45,7 @@ public class DeliveredOrderActivity extends AppCompatActivity implements Cancele
         String data = getIntent().getStringExtra(Constants.NEW_REQUST_DATA);
         orderModelList = gson.fromJson(data, new TypeToken<List<OrderModel>>(){}.getType());
         initRecycleview();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     void initRecycleview(){
@@ -75,5 +78,16 @@ public class DeliveredOrderActivity extends AppCompatActivity implements Cancele
     public void onBackPressed() {
         setResult(RESULT_OK);
         super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

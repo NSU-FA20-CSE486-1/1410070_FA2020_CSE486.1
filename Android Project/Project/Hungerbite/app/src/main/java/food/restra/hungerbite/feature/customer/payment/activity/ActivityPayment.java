@@ -1,10 +1,12 @@
 package food.restra.hungerbite.feature.customer.payment.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -116,6 +118,9 @@ public class ActivityPayment extends AppCompatActivity {
                 startActivity(i);
             });
         });
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     List<OrderModel> mapCartToOrder(int paymentType){
@@ -135,5 +140,16 @@ public class ActivityPayment extends AppCompatActivity {
             list.add(order);
         }
         return list;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
