@@ -74,6 +74,7 @@
                         android:layout_height="40dp"
                         android:src="@drawable/arif" />
                     <TextView
+                        android:id="@+id/tvUploaderName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
@@ -95,6 +96,7 @@
                         android:layout_height="40dp"
                         android:src="@drawable/ic_like"/>
                     <TextView
+                        android:id="@+id/tvPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:minWidth="70dp"

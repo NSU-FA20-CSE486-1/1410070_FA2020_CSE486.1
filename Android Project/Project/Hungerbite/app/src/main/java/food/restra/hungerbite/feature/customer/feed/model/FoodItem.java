@@ -1,5 +1,7 @@
 package food.restra.hungerbite.feature.customer.feed.model;
 
+import food.restra.hungerbite.feature.login.model.Profile;
+
 /**
  * Created by Yeahia Muhammad Arif on 29,January,2021
  */
@@ -11,6 +13,9 @@ public class FoodItem {
     String category;
     String foodCategory;
     String uploaderId;
+    String uploaderName;
+    String uploaderImage;
+    String location;
 
     public FoodItem(){}
 
@@ -68,5 +73,29 @@ public class FoodItem {
 
     public void setUploaderId(String uploaderId) {
         this.uploaderId = uploaderId;
+    }
+
+    public String getUploaderName() {
+        return uploaderName;
+    }
+
+    public void setUploaderName(String uploaderName) {
+        this.uploaderName = uploaderName;
+    }
+
+    public String getUploaderImage() {
+        return uploaderImage;
+    }
+
+    public void setUploaderImage(String uploaderImage) {
+        this.uploaderImage = uploaderImage;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

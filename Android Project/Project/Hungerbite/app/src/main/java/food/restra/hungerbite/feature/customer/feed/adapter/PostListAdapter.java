@@ -46,7 +46,8 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull PostListAdapter.MyViewHolder holder, int position) {
-        holder.tvTitle.setText(this.postList.get(position).getTitle().toString());
+        holder.tvTitle.setText(this.postList.get(position).getTitle());
+        holder.tvPrice.setText(this.postList.get(position).getPrice());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,10 +55,15 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
                 clickListener.onItemClick(postList.get(position));
             }
         });
+
         Glide.with(context)
                 .load(this.postList.get(position).getImage())
                 .apply(RequestOptions.centerCropTransform())
                 .into(holder.imageView);
+
+        Glide.with(context)
+                .load(this.postList.get(position).getUploaderImage())
+                .into(holder.ivUploaderImage);
     }
 
     @Override
@@ -70,13 +76,16 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle;
-        ImageView imageView;
+        TextView tvTitle, tvUploaderName, tvPrice;
+        ImageView imageView,ivUploaderImage;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            tvTitle = (TextView)itemView.findViewById(R.id.titleView);
-            imageView = (ImageView)itemView.findViewById(R.id.imageView);
+            tvTitle = itemView.findViewById(R.id.titleView);
+            imageView = itemView.findViewById(R.id.imageView);
+            tvUploaderName = itemView.findViewById(R.id.tvUploaderName);
+            ivUploaderImage = itemView.findViewById(R.id.profile_image);
+            tvPrice = itemView.findViewById(R.id.tvPrice);
 
         }
     }

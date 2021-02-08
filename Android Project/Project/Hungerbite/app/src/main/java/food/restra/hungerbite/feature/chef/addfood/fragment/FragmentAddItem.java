@@ -20,7 +20,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -28,6 +33,7 @@ import java.io.IOException;
 import java.util.UUID;
 import food.restra.hungerbite.R;
 import food.restra.hungerbite.feature.customer.feed.model.FoodItem;
+import food.restra.hungerbite.feature.login.model.Profile;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -127,10 +133,25 @@ public class FragmentAddItem extends Fragment {
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            db.collection("posts")
-                    .add(item).addOnCompleteListener(task -> {
-                        Toast.makeText(getContext(), "Item Added Successfully", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
+
+            db.collection("users")
+                    .document(mAuth.getCurrentUser().getUid())
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        Profile user = documentSnapshot.toObject(Profile.class);
+                        if(user.getName() != null && user.getLocation() != null){
+                            item.setUploaderImage(user.getImage());
+                            item.setUploaderName(user.getName());
+                            item.setLocation(user.getLocation());
+                            db.collection("posts")
+                                    .add(item).addOnCompleteListener(task -> {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(getContext(), "Item added successfully", Toast.LENGTH_SHORT).show();
+                                    });
+                        }else{
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "Your profile is not complete", Toast.LENGTH_SHORT).show();
+                        }
                     });
         });
     }
@@ -175,7 +196,6 @@ public class FragmentAddItem extends Fragment {
                         progressDialog.dismiss();
                         ref.getDownloadUrl().addOnCompleteListener(task -> {
                             imageUrl = task.getResult().toString();
-                            Log.i("dfd","dfdf");
                         });
                         Toast.makeText(getContext(), "Image Uploaded!!", Toast.LENGTH_SHORT).show();
                     })
