@@ -11,6 +11,8 @@ public class Cart {
     String uploaderId;
     int itemCount;
     FoodItem item;
+    String customerName;
+    String customerImage;
 
     public Cart(){}
 
@@ -52,5 +54,21 @@ public class Cart {
 
     public void setUploaderId(String uploaderId) {
         this.uploaderId = uploaderId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerImage() {
+        return customerImage;
+    }
+
+    public void setCustomerImage(String customerImage) {
+        this.customerImage = customerImage;
     }
 }

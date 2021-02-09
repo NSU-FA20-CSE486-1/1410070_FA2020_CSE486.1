@@ -16,13 +16,16 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
 import food.restra.hungerbite.R;
 import food.restra.hungerbite.feature.customer.feed.model.FoodItem;
 import food.restra.hungerbite.feature.customer.product_detail.model.Cart;
+import food.restra.hungerbite.feature.login.model.Profile;
 
 public class ProductDetailActivity extends AppCompatActivity {
     Gson gson;
@@ -96,17 +99,31 @@ public class ProductDetailActivity extends AppCompatActivity {
                 cart.setItemCount(itemCount);
                 cart.setItem(item);
                 ProgressDialog progressDialog = new ProgressDialog(ProductDetailActivity.this);
-                progressDialog.setTitle("Loading..");
                 progressDialog.show();
+
                 db.collection("users")
-                        .document(mAuth.getCurrentUser().getUid())
-                        .collection("cart")
-                        .add(cart)
-                        .addOnSuccessListener(documentReference -> {
+                    .document(mAuth.getCurrentUser().getUid())
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        Profile user = documentSnapshot.toObject(Profile.class);
+                        if(user.getName() != null && user.getLocation() != null){
+                            cart.setCustomerName(user.getName());
+                            cart.setCustomerImage(user.getImage());
+                            db.collection("users")
+                                .document(mAuth.getCurrentUser().getUid())
+                                .collection("cart")
+                                .add(cart)
+                                .addOnSuccessListener(documentReference -> {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(this, "Item added to cart successfully", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                });
+                        }else{
                             progressDialog.dismiss();
-                            Toast.makeText(this, "Item added to cart successfully", Toast.LENGTH_SHORT).show();
-                            finish();
-                        });
+                            Toast.makeText(getApplicationContext(), "Your profile is not complete", Toast.LENGTH_SHORT).show();
+                        }
+
+                    });
 
             }else{
                 Toast.makeText(this, "Please add item", Toast.LENGTH_SHORT).show();

@@ -57,6 +57,11 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
         holder.tvOrderId.setText("Order ID: " + this.orderModelList.get(position).getOrderId().substring(0, 7));
         holder.tvItemCount.setText("x"+ this.orderModelList.get(position).getCart().getItemCount());
         holder.tvPrice.setText(String.valueOf(price * itemCount));
+        holder.tvCustomerName.setText(this.orderModelList.get(position).getCart().getCustomerName());
+        Glide.with(context)
+                .load(this.orderModelList.get(position).getCart().getCustomerImage())
+                .apply(RequestOptions.centerCropTransform())
+                .into(holder.ivCustomerImage);
         Glide.with(context)
                 .load(this.orderModelList.get(position).getCart().getItem().getImage())
                 .apply(RequestOptions.centerCropTransform())
@@ -81,8 +86,8 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvPrice, tvCount, tvOrderId, tvItemCount;
-        ImageView imageView, btDelete;
+        TextView tvTitle, tvPrice, tvCount, tvOrderId, tvItemCount,tvCustomerName;
+        ImageView imageView, btDelete,ivCustomerImage;
         Switch switchButton;
 
 
@@ -95,6 +100,8 @@ public class NewRequestAdapter extends RecyclerView.Adapter<NewRequestAdapter.My
             tvOrderId = itemView.findViewById(R.id.tvOrderId);
             btDelete = itemView.findViewById(R.id.btDelete);
             tvItemCount = itemView.findViewById(R.id.tvItemCount);
+            ivCustomerImage = itemView.findViewById(R.id.profile_image);
+            tvCustomerName = itemView.findViewById(R.id.tvUploaderName);
         }
     }
 

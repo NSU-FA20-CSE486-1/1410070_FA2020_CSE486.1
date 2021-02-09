@@ -15,7 +15,7 @@
         android:title="Search" />
     <item
         android:id="@+id/orderStatus"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_order"
         android:title="Order Status" />
     <item
         android:id="@+id/profileFragment"
