@@ -16,15 +16,24 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import food.restra.hungerbite.R;
+import food.restra.hungerbite.common.network.APIService;
+import food.restra.hungerbite.common.network.RetroInstance;
+import food.restra.hungerbite.common.network.model.DataModel;
+import food.restra.hungerbite.common.network.model.NotificationModel;
+import food.restra.hungerbite.common.network.model.RootModel;
 import food.restra.hungerbite.common.util.Constants;
 import food.restra.hungerbite.feature.customer.CustomerHomeActivity;
 import food.restra.hungerbite.feature.customer.payment.model.OrderModel;
 import food.restra.hungerbite.feature.customer.product_detail.model.Cart;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ActivityPayment extends AppCompatActivity {
     LinearLayout llBkash, llCard, llCashOnDelivery;
@@ -63,11 +72,7 @@ public class ActivityPayment extends AppCompatActivity {
                 batch.set(docRef, order);
             }
             batch.commit().addOnCompleteListener(task -> {
-                progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Order Submitted", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(), CustomerHomeActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
+                sendNotification(orderList.get(0).getCart().getItem().getUploaderToken(), orderList, progressDialog);
             });
         });
 
@@ -87,11 +92,8 @@ public class ActivityPayment extends AppCompatActivity {
                 batch.set(docRef, order);
             }
             batch.commit().addOnCompleteListener(task -> {
-                progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Order Submitted", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(), CustomerHomeActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
+                sendNotification(orderList.get(0).getCart().getItem().getUploaderToken(), orderList, progressDialog);
+
             });
         });
 
@@ -111,11 +113,7 @@ public class ActivityPayment extends AppCompatActivity {
                 batch.set(docRef, order);
             }
             batch.commit().addOnCompleteListener(task -> {
-                progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Order Submitted", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(), CustomerHomeActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
+                sendNotification(orderList.get(0).getCart().getItem().getUploaderToken(), orderList, progressDialog);
             });
         });
 
@@ -140,6 +138,36 @@ public class ActivityPayment extends AppCompatActivity {
             list.add(order);
         }
         return list;
+    }
+
+    public void sendNotification(String token, List<OrderModel> orderModelList, ProgressDialog dialog) {
+        StringBuilder builder = new StringBuilder();
+        for (OrderModel model: orderModelList) {
+            builder.append(model.getCart().getItem().getTitle() +"  x"+ model.getCart().getItemCount());
+            builder.append("\n");
+        }
+        APIService apiService = RetroInstance.getRetroClient().create(APIService.class);
+        RootModel rootModel = new RootModel(token, new NotificationModel("New Order Alert!", builder.toString()), new DataModel("Name", "30"));
+        Call<ResponseBody> call = apiService.sendNotification(rootModel);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                dialog.dismiss();
+                Toast.makeText(getApplicationContext(), "Order Submitted", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), CustomerHomeActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                dialog.dismiss();
+                Toast.makeText(getApplicationContext(), "Order Submitted", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), CustomerHomeActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            }
+        });
     }
 
     @Override

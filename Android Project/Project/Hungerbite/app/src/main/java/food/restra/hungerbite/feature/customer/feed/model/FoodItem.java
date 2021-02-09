@@ -16,6 +16,7 @@ public class FoodItem {
     String uploaderName;
     String uploaderImage;
     String location;
+    String uploaderToken;
 
     public FoodItem(){}
 
@@ -97,5 +98,13 @@ public class FoodItem {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getUploaderToken() {
+        return uploaderToken;
+    }
+
+    public void setUploaderToken(String uploaderToken) {
+        this.uploaderToken = uploaderToken;
     }
 }

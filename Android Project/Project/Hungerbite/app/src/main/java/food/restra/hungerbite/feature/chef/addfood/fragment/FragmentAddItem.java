@@ -143,6 +143,7 @@ public class FragmentAddItem extends Fragment {
                             item.setUploaderImage(user.getImage());
                             item.setUploaderName(user.getName());
                             item.setLocation(user.getLocation());
+                            item.setUploaderToken(user.getToken());
                             db.collection("posts")
                                     .add(item).addOnCompleteListener(task -> {
                                         progressDialog.dismiss();

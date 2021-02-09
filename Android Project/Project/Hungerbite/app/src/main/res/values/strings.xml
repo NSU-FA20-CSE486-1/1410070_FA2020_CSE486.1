@@ -24,6 +24,7 @@
     <string name="delivered_request">Delivered Request</string>
     <string name="edit_item">Edit Item</string>
     <string name="edit">Edit</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string-array name="location">
         <item>Badda</item>
         <item>Mirpur</item>

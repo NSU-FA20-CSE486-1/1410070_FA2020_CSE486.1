@@ -9,6 +9,7 @@ public class Profile {
     String location;
     String image;
     String type;
+    String token;
 
     public String getName() {
         return name;
@@ -48,5 +49,13 @@ public class Profile {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

@@ -21,4 +21,5 @@ public class Constants {
     public static final int BKASH_PAYMENT = 1;
     public static final int CARD_PAYMENT = 2;
     public static final int CASH_ON_DELIVERY = 3;
+    public static final String SERVER_KEY = "AAAAdp-bfgE:APA91bE_uRzlae8XxYjCbke1BRmKusn0YFFGu4lfrPLDqdN8LtCqziVVv9flwq5JaR288-OmIdwcmkMPfYiyFu3uQ4EjPcO6w9VXze2veTG-JyQ4TxF0HQxmNvh61S1LwPFZxaOz0yyv";
 }
