@@ -13,6 +13,7 @@ public class Cart {
     FoodItem item;
     String customerName;
     String customerImage;
+    String customerToken;
 
     public Cart(){}
 
@@ -70,5 +71,13 @@ public class Cart {
 
     public void setCustomerImage(String customerImage) {
         this.customerImage = customerImage;
+    }
+
+    public String getCustomerToken() {
+        return customerToken;
+    }
+
+    public void setCustomerToken(String customerToken) {
+        this.customerToken = customerToken;
     }
 }

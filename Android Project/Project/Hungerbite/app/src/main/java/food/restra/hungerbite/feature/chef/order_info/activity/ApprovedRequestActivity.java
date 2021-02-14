@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.okhttp.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +22,18 @@ import java.util.List;
 import java.util.Map;
 
 import food.restra.hungerbite.R;
+import food.restra.hungerbite.common.network.APIService;
+import food.restra.hungerbite.common.network.RetroInstance;
+import food.restra.hungerbite.common.network.model.DataModel;
+import food.restra.hungerbite.common.network.model.NotificationModel;
+import food.restra.hungerbite.common.network.model.RootModel;
 import food.restra.hungerbite.common.util.Constants;
 import food.restra.hungerbite.feature.chef.order_info.adapter.ApprovedRequestAdapter;
 import food.restra.hungerbite.feature.chef.order_info.adapter.NewRequestAdapter;
 import food.restra.hungerbite.feature.customer.payment.model.OrderModel;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ApprovedRequestActivity extends AppCompatActivity implements ApprovedRequestAdapter.ItemClickListener {
 
@@ -71,9 +80,25 @@ public class ApprovedRequestActivity extends AppCompatActivity implements Approv
                 .update(map)
                 .addOnCompleteListener(task -> {
                     Toast.makeText(getApplicationContext(), "Item Delivered", Toast.LENGTH_SHORT).show();
+                    sendNotification(orderModel.getCart().getCustomerToken(), "Your order delivered");
                     orderModelList.remove(position);
                     adapter.notifyDataSetChanged();
                 });
+    }
+
+    public void sendNotification(String token, String status) {
+        APIService apiService = RetroInstance.getRetroClient().create(APIService.class);
+        RootModel rootModel = new RootModel(token, new NotificationModel(status, ""), new DataModel("Name", "30"));
+        Call<ResponseBody> call = apiService.sendNotification(rootModel);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            }
+        });
     }
 
     @Override

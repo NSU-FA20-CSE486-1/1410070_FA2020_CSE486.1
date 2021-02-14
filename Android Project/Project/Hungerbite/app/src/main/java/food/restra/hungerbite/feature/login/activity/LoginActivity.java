@@ -3,6 +3,7 @@ package food.restra.hungerbite.feature.login.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +27,7 @@ import food.restra.hungerbite.R;
 import food.restra.hungerbite.common.util.Constants;
 import food.restra.hungerbite.feature.chef.ChefHomeActivity;
 import food.restra.hungerbite.feature.customer.CustomerHomeActivity;
+import food.restra.hungerbite.feature.customer.payment.activity.ActivityPayment;
 import food.restra.hungerbite.feature.login.model.AppUser;
 import food.restra.hungerbite.feature.login.model.Profile;
 
@@ -51,6 +53,9 @@ public class LoginActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         buttonSignup.setOnClickListener(view -> {
+            ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+            progressDialog.setTitle("Please Wait...");
+            progressDialog.show();
             mAuth.createUserWithEmailAndPassword(editText.getText().toString(), passwordText.getText().toString())
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
@@ -59,31 +64,40 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Intent intent = new Intent(LoginActivity.this, CustomerSelectActivity.class);
                             startActivity(intent);
+                            progressDialog.dismiss();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
                         }
                     });
         });
 
-        buttonLogin.setOnClickListener(view -> mAuth.signInWithEmailAndPassword(editText.getText().toString(), passwordText.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            gotoLandingPage();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+        buttonLogin.setOnClickListener(view -> {
+            ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+            progressDialog.setTitle("Please Wait...");
+            progressDialog.show();
+            mAuth.signInWithEmailAndPassword(editText.getText().toString(), passwordText.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithEmail:success");
+                                gotoLandingPage();
+                                progressDialog.dismiss();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            }
                         }
-                    }
-                }));
+                    });
+        });
 
 
 

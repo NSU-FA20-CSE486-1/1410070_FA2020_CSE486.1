@@ -73,6 +73,7 @@ public class OrderStatusAdapter extends RecyclerView.Adapter<OrderStatusAdapter.
                 .load(this.orderModelList.get(position).getCart().getItem().getImage())
                 .apply(RequestOptions.centerCropTransform())
                 .into(holder.imageView);
+        holder.tvChefName.setText(this.orderModelList.get(position).getCart().getItem().getUploaderName());
     }
 
     @Override
@@ -85,7 +86,7 @@ public class OrderStatusAdapter extends RecyclerView.Adapter<OrderStatusAdapter.
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvPrice, tvOrderTitle;
+        TextView tvTitle, tvPrice, tvOrderTitle, tvChefName;
         LinearLayout llStatusContainer;
         ImageView imageView;
 
@@ -96,6 +97,7 @@ public class OrderStatusAdapter extends RecyclerView.Adapter<OrderStatusAdapter.
             tvOrderTitle = (TextView)itemView.findViewById(R.id.tvStatusTitle);
             llStatusContainer = (LinearLayout)itemView.findViewById(R.id.llStatusContainer);
             imageView = (ImageView)itemView.findViewById(R.id.tvImage);
+            tvChefName = itemView.findViewById(R.id.tvChefName);
         }
     }
 

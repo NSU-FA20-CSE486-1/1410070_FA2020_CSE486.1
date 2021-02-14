@@ -56,6 +56,8 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
             }
         });
 
+        holder.tvUploaderName.setText(this.postList.get(position).getUploaderName());
+
         Glide.with(context)
                 .load(this.postList.get(position).getImage())
                 .apply(RequestOptions.centerCropTransform())

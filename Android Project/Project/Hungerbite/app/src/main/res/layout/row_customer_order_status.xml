@@ -28,6 +28,15 @@
                 android:textColor="@color/black"
                 android:text="Fish and Rice"/>
             <TextView
+                android:id="@+id/tvChefName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:maxWidth="150dp"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:text="Fish and Rice"/>
+            <TextView
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="5dp"

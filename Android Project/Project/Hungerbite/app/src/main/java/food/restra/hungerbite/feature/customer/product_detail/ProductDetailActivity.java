@@ -29,7 +29,7 @@ import food.restra.hungerbite.feature.login.model.Profile;
 
 public class ProductDetailActivity extends AppCompatActivity {
     Gson gson;
-    TextView tvTitle, tvSubtitle, tvPrice, tvSelectedCount, tvItemCount, tvPriceSum;
+    TextView tvTitle, tvSubtitle, tvPrice, tvSelectedCount, tvItemCount, tvPriceSum, tvLocation;
     ImageView ivProductImage;
     ImageButton btPlus, btMinus;
     RelativeLayout btAddCart;
@@ -64,6 +64,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         tvPrice.setText(item.getPrice() + "$");
         tvPriceSum.setText(priceCount + " $");
         tvItemCount.setText(itemCount + " items");
+        tvLocation.setText(item.getLocation());
         tvSelectedCount.setText(String.valueOf(itemCount));
         Glide.with(getApplicationContext())
                 .load(item.getImage())
@@ -109,6 +110,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                         if(user.getName() != null && user.getLocation() != null){
                             cart.setCustomerName(user.getName());
                             cart.setCustomerImage(user.getImage());
+                            cart.setCustomerToken(user.getToken());
                             db.collection("users")
                                 .document(mAuth.getCurrentUser().getUid())
                                 .collection("cart")
@@ -142,6 +144,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         btPlus = findViewById(R.id.btPlus);
         btMinus = findViewById(R.id.btMinus);
         btAddCart = findViewById(R.id.btAddCart);
+        tvLocation = findViewById(R.id.tvLocation);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

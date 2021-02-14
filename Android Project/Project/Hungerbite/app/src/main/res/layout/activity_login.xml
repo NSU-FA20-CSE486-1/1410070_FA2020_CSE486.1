@@ -44,6 +44,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_margin="10dp"
                 android:paddingLeft="10dp"
+                android:inputType="textPassword"
                 android:hint="Password"/>
         </LinearLayout>
     </LinearLayout>
@@ -52,18 +53,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:weightSum="2">
         <Button
             android:id="@+id/btLogin"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="50dp"
             android:layout_margin="5dp"
+            android:background="@color/purple_500"
             android:text="Login"/>
         <Button
             android:id="@+id/btSignup"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="50dp"
             android:layout_margin="5dp"
+            android:background="@color/purple_700"
             android:text="Signup"/>
     </LinearLayout>
 
