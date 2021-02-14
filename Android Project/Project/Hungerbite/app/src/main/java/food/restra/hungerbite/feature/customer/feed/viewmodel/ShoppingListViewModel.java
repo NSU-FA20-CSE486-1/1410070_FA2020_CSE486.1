@@ -13,23 +13,23 @@ public class ShoppingListViewModel extends ViewModel {
   private PostListRepository repository = new PostListRepository();
   PostListLiveData liveData = null;
 
-  public LiveData<List<FoodItem>> getLunchListLiveData() {
-    liveData = repository.getLunchPosts();
+  public LiveData<List<FoodItem>> getLunchListLiveData(String location) {
+    liveData = repository.getLunchPosts(location);
     return liveData;
   }
 
-  public LiveData<List<FoodItem>> getDinnerListLiveData() {
-    liveData = repository.getDinnerPosts();
+  public LiveData<List<FoodItem>> getDinnerListLiveData(String location) {
+    liveData = repository.getDinnerPosts(location);
     return liveData;
   }
 
-  public LiveData<List<FoodItem>> getBreakfastListLiveData() {
-    liveData = repository.getBreakfastPosts();
+  public LiveData<List<FoodItem>> getBreakfastListLiveData(String location) {
+    liveData = repository.getBreakfastPosts(location);
     return liveData;
   }
 
-  public LiveData<List<FoodItem>> getDessertLiveData() {
-    liveData = repository.getDessertPosts();
+  public LiveData<List<FoodItem>> getDessertLiveData(String location) {
+    liveData = repository.getDessertPosts(location);
     return liveData;
   }
 

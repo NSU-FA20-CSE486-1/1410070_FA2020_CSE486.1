@@ -79,7 +79,8 @@ public class FoodSearchFragment extends Fragment implements PostListAdapter.Item
         adapter =  new PostListAdapter(getContext(), foodItemList, this);
         recyclerView.setAdapter(adapter);
         viewModel = ViewModelProviders.of(this).get(ShoppingListViewModel.class);
-        viewModel.getDinnerListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
+
+        viewModel.getDinnerListLiveData("").observe(getViewLifecycleOwner(), Observable -> {});
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {

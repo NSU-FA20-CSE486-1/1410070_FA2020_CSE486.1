@@ -1,6 +1,8 @@
 package food.restra.hungerbite.feature.customer.feed.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -47,6 +49,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
     private LinearLayout llDinner, llLunch, llBreakfast, llDesert;
     private ImageView ivDinner, ivLunch, ivBreakfast, ivDesert;
     private Gson gson;
+    private SharedPreferences sharedPreferences;
 
 
     // TODO: Rename and change types of parameters
@@ -73,6 +76,7 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         gson =  new Gson();
+        sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
     }
 
     @Override
@@ -103,8 +107,8 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
         recyclerView.setAdapter(adapter);
 
         llDinner.setOnClickListener(view1 -> {
-            Toast.makeText(getContext(), "dinner", Toast.LENGTH_LONG).show();
-            viewModel.getDinnerListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
+            String location = sharedPreferences.getString("location","");
+            viewModel.getDinnerListLiveData(location).observe(getViewLifecycleOwner(), Observable -> {});
             viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
                 if(postModels != null) {
                     foodItemList = postModels;
@@ -122,7 +126,8 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
         });
 
         llLunch.setOnClickListener(view1 -> {
-            viewModel.getLunchListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
+            String location = sharedPreferences.getString("location","");
+            viewModel.getLunchListLiveData(location).observe(getViewLifecycleOwner(), Observable -> {});
             viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
                 if(postModels != null) {
                     foodItemList = postModels;
@@ -139,7 +144,8 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
         });
 
         llBreakfast.setOnClickListener(view1 -> {
-            viewModel.getBreakfastListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
+            String location = sharedPreferences.getString("location","");
+            viewModel.getBreakfastListLiveData(location).observe(getViewLifecycleOwner(), Observable -> {});
             viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
                 if(postModels != null) {
                     foodItemList = postModels;
@@ -156,7 +162,8 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
         });
 
         llDesert.setOnClickListener(view1 -> {
-            viewModel.getDessertLiveData().observe(getViewLifecycleOwner(), Observable -> {});
+            String location = sharedPreferences.getString("location","");
+            viewModel.getDessertLiveData(location).observe(getViewLifecycleOwner(), Observable -> {});
             viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
                 if(postModels != null) {
                     foodItemList = postModels;
@@ -173,8 +180,9 @@ public class CustomerHomeFragment extends Fragment implements PostListAdapter.It
         });
 
 
+        String location = sharedPreferences.getString("location","");
         viewModel = ViewModelProviders.of(this).get(ShoppingListViewModel.class);
-        viewModel.getDinnerListLiveData().observe(getViewLifecycleOwner(), Observable -> {});
+        viewModel.getDinnerListLiveData(location).observe(getViewLifecycleOwner(), Observable -> {});
         viewModel.getShoppingList().observe(getViewLifecycleOwner(), postModels -> {
             if(postModels != null) {
                 foodItemList = postModels;
