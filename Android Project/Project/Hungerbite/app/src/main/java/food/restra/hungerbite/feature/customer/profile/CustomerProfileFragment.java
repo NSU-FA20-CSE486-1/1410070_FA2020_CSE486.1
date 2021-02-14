@@ -1,7 +1,9 @@
 package food.restra.hungerbite.feature.customer.profile;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -59,6 +61,8 @@ public class CustomerProfileFragment extends Fragment {
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private Button btEdit;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     public CustomerProfileFragment() {
         // Required empty public constructor
@@ -89,6 +93,8 @@ public class CustomerProfileFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+        sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
     }
 
     @Override
@@ -118,6 +124,9 @@ public class CustomerProfileFragment extends Fragment {
             item.setImage(imageUrl);
             item.setLocation(spLocation.getSelectedItem().toString());
             item.setType("customer");
+
+            editor.putString("location", spLocation.getSelectedItem().toString());
+            editor.apply();
 
             ProgressDialog progressDialog = new ProgressDialog(getActivity());
             progressDialog.setTitle("Uploading...");
